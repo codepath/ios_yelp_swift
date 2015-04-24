@@ -4,18 +4,32 @@ This is a headless example of how to implement an OAuth 1.0a Yelp API client. Th
 
 ### Next steps
 
-- Check out `MainViewController.swift` to see how to use the `YelpClient`.
-- Augment the search method in the `YelpClient` with whatever search parameters you want to support.
+- Check out `BusinessesViewController.swift` to see how to use the `Business` model.
 
 ### Sample request
 
-```
-client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+**Basic search with query**
 
-client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-    println(response)
-}) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-    println(error)
+```
+Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+    self.businesses = businesses
+    
+    for business in businesses {
+        println(business.name!)
+        println(business.address!)
+    }
+})
+```
+
+**Advanced search with categories, sort, and deal filters**
+
+```
+Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+
+    for business in businesses {
+        println(business.name!)
+        println(business.address!)
+    }
 }
 
 ```
