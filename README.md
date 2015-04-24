@@ -23,63 +23,61 @@ client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, re
 ### Sample response
 
 ```
-businesses =     (
-                {
+{
+    businesses =     (
+        {
             categories =             (
+                                (
+                    Laotian,
+                    laotian
+                ),
                                 (
                     Thai,
                     thai
                 )
             );
-            "display_phone" = "+1-415-931-6917";
-            id = "lers-ros-thai-san-francisco";
-            "image_url" = "http://s3-media2.ak.yelpcdn.com/bphoto/IStxUNVdfuPR2ddDAIPk_A/ms.jpg";
+            "display_phone" = "+1-415-796-3391";
+            distance = "789.6398263647031";
+            id = "tycoon-thai-restaurant-san-francisco";
+            "image_url" = "http://s3-media1.fl.yelpassets.com/bphoto/0ygpM52ux-e8YrMEdFUEcA/ms.jpg";
             "is_claimed" = 1;
             "is_closed" = 0;
             location =             {
                 address =                 (
-                    "730 Larkin St"
+                    "620 O'Farrell St"
                 );
                 city = "San Francisco";
+                coordinate =                 {
+                    latitude = "37.78563851356";
+                    longitude = "-122.415149049807";
+                };
                 "country_code" = US;
-                "cross_streets" = "Olive St & Ellis St";
+                "cross_streets" = "Harlem Aly & Leavenworth St";
                 "display_address" =                 (
-                    "730 Larkin St",
-                    "(b/t Olive St & Ellis St)",
+                    "620 O'Farrell St",
                     Tenderloin,
                     "San Francisco, CA 94109"
                 );
+                "geo_accuracy" = "9.5";
                 neighborhoods =                 (
                     Tenderloin
                 );
                 "postal_code" = 94109;
                 "state_code" = CA;
             };
-            "menu_date_updated" = 1387658025;
-            "menu_provider" = "single_platform";
-            "mobile_url" = "http://m.yelp.com/biz/lers-ros-thai-san-francisco";
-            name = "Lers Ros Thai";
-            phone = 4159316917;
-            rating = 4;
-            "rating_img_url" = "http://s3-media4.ak.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png";
-            "rating_img_url_large" = "http://s3-media2.ak.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png";
-            "rating_img_url_small" = "http://s3-media4.ak.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png";
-            "review_count" = 1154;
-            "snippet_image_url" = "http://s3-media4.ak.yelpcdn.com/photo/D40HpcJt-O6Ll654S_--6w/ms.jpg";
-            "snippet_text" = "Fantastic pad-see-ew. Super rich, flavorful sauce and plenty of ginormous prawns, especially for a $12 price tag in San Francisco. I went through a pretty...";
-            url = "http://www.yelp.com/biz/lers-ros-thai-san-francisco";
+            "mobile_url" = "http://m.yelp.com/biz/tycoon-thai-restaurant-san-francisco";
+            name = "Tycoon Thai Restaurant";
+            phone = 4157963391;
+            rating = "4.5";
+            "rating_img_url" = "http://s3-media2.fl.yelpassets.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png";
+            "rating_img_url_large" = "http://s3-media4.fl.yelpassets.com/assets/2/www/img/9f83790ff7f6/ico/stars/v1/stars_large_4_half.png";
+            "rating_img_url_small" = "http://s3-media2.fl.yelpassets.com/assets/2/www/img/a5221e66bc70/ico/stars/v1/stars_small_4_half.png";
+            "review_count" = 59;
+            "snippet_image_url" = "http://s3-media1.fl.yelpassets.com/photo/L9aadSdOmgkUSOc1BfsLKw/ms.jpg";
+            "snippet_text" = "OMG! Amaaaaazzzzing food! :) I came here the first time with my co-workers, and then came again with one of my friends. We were so impressed by the homey...";
+            url = "http://www.yelp.com/biz/tycoon-thai-restaurant-san-francisco";
         }
-    );
-    region =     {
-        center =         {
-            latitude = "37.7703124";
-            longitude = "-122.43647245575";
-        };
-        span =         {
-            "latitude_delta" = "0.06424638000000016";
-            "longitude_delta" = "0.07145348265001417";
-        };
-    };
-    total = 760;
+    )
+}
 ```
 
