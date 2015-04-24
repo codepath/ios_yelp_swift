@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
     let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
     
+    var businesses: [Business]?
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,7 +29,10 @@ class ViewController: UIViewController {
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
         client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            println(response)
+            var dictionaries = response["businesses"] as? [NSDictionary]
+            if dictionaries != nil {
+                self.businesses = Business.businesses(array: dictionaries!)
+            }
         }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
             println(error)
         }
