@@ -44,15 +44,21 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, success: (AFHTTPRequestOperation!, AnyObject!) -> Void, failure: (AFHTTPRequestOperation!, NSError!) -> Void) -> AFHTTPRequestOperation! {
+    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
 
         // Default the location to San Francisco
         var parameters = ["term": term, "ll": "37.785771,-122.406165"]
         
-        return self.GET("search", parameters: parameters, success: success, failure: failure)
+        return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                var dictionaries = response["businesses"] as? [NSDictionary]
+                if dictionaries != nil {
+                    completion(Business.businesses(array: dictionaries!), nil)
+                }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            completion(nil, error)
+        })
     }
-    
 }
 
 

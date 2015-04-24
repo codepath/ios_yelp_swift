@@ -15,7 +15,7 @@ class BusinessesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Business.searchWithQuery("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {

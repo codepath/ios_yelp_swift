@@ -75,15 +75,7 @@ class Business: NSObject {
         return businesses
     }
     
-    class func searchWithQuery(query: String, completion: ([Business]!, NSError!) -> Void) {
-        YelpClient.sharedInstance.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            var dictionaries = response["businesses"] as? [NSDictionary]
-            if dictionaries != nil {
-                completion(Business.businesses(array: dictionaries!), nil)
-            }
-        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-            println(error)
-            completion(nil, error)
-        }
+    class func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) {
+        YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
     }
 }
