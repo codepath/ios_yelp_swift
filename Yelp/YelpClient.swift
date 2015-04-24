@@ -40,7 +40,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         var baseUrl = NSURL(string: "http://api.yelp.com/v2/")
         super.init(baseURL: baseUrl, consumerKey: key, consumerSecret: secret);
         
-        var token = BDBOAuthToken(token: accessToken, secret: accessSecret, expiration: nil)
+        var token = BDBOAuth1Credential(token: accessToken, secret: accessSecret, expiration: nil)
         self.requestSerializer.saveAccessToken(token)
     }
     
