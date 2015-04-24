@@ -14,6 +14,10 @@ let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
 let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
 let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
 
+enum YelpSortMode: Int {
+    case BestMatched = 0, Distance, HighestRated
+}
+
 class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
@@ -45,20 +49,36 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     }
     
     func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
+    }
+    
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
 
         // Default the location to San Francisco
-        var parameters = ["term": term, "ll": "37.785771,-122.406165"]
+        var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
+
+        if sort != nil {
+            parameters["sort"] = sort!.rawValue
+        }
+        
+        if categories != nil && categories!.count > 0 {
+            parameters["category_filter"] = ",".join(categories!)
+        }
+        
+        if deals != nil {
+            parameters["deals_filter"] = deals!
+        }
+        
+        println(parameters)
         
         return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                var dictionaries = response["businesses"] as? [NSDictionary]
-                if dictionaries != nil {
-                    completion(Business.businesses(array: dictionaries!), nil)
-                }
+            var dictionaries = response["businesses"] as? [NSDictionary]
+            if dictionaries != nil {
+                completion(Business.businesses(array: dictionaries!), nil)
+            }
             }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-            completion(nil, error)
+                completion(nil, error)
         })
     }
 }
-
-

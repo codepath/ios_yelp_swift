@@ -28,13 +28,23 @@ class Business: NSObject {
         }
         
         let location = dictionary["location"] as? NSDictionary
+        var address = ""
         if location != nil {
-            var street = (location!["address"] as! NSArray)[0] as! String
-            var neighborhood = (location!["neighborhoods"] as! NSArray)[0] as! String
-            address = "\(street), \(neighborhood)"
-        } else {
-            address = nil
+            let addressArray = location!["address"] as? NSArray
+            var street: String? = ""
+            if addressArray != nil && addressArray!.count > 0 {
+                address = addressArray![0] as! String
+            }
+            
+            var neighborhoods = location!["neighborhoods"] as? NSArray
+            if neighborhoods != nil && neighborhoods!.count > 0 {
+                if !address.isEmpty {
+                    address += ", "
+                }
+                address += neighborhoods![0] as! String
+            }
         }
+        self.address = address
         
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
@@ -77,5 +87,9 @@ class Business: NSObject {
     
     class func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) {
         YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
+    }
+    
+    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
+        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
     }
 }
