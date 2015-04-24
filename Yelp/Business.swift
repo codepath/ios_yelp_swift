@@ -66,12 +66,24 @@ class Business: NSObject {
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
-    static func businesses(#array: [NSDictionary]) -> [Business] {
+    class func businesses(#array: [NSDictionary]) -> [Business] {
         var businesses = [Business]()
         for dictionary in array {
             var business = Business(dictionary: dictionary)
             businesses.append(business)
         }
         return businesses
+    }
+    
+    class func searchWithQuery(query: String, completion: ([Business]!, NSError!) -> Void) {
+        YelpClient.sharedInstance.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var dictionaries = response["businesses"] as? [NSDictionary]
+            if dictionaries != nil {
+                completion(Business.businesses(array: dictionaries!), nil)
+            }
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            println(error)
+            completion(nil, error)
+        }
     }
 }
