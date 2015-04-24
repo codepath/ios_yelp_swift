@@ -31,5 +31,4 @@ Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusio
         println(business.address!)
     }
 }
-
 ```
