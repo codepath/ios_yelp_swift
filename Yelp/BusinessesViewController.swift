@@ -14,6 +14,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     var businesses: [Business]!
     let searchBar = UISearchBar()
+    var searchTerm = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +27,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         navigationItem.titleView = searchBar
         
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(searchTerm, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
-            
-            //            for business in businesses {
-            //                println(business.name!)
-            //                println(business.address!)
-            //            }
         })
         
-        //        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-        //            self.businesses = businesses
-        //            self.tableView.reloadData()
-        //
-        //            for business in businesses {
-        //                println(business.name!)
-        //                println(business.address!)
-        //            }
-        //        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,7 +62,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        Business.searchWithTerm(searchBar.text, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        searchTerm = searchBar.text
+        Business.searchWithTerm(searchTerm, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
         })
@@ -87,8 +75,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
+        println(filters)
         var categories = filters["categories"] as? [String]
-        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+        let deals = filters["deals"] as! Bool
+        let sortType = YelpSortMode(rawValue: filters["sortType"] as! Int)!
+        Business.searchWithTerm(searchTerm, sort: sortType, categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
         }

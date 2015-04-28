@@ -18,6 +18,7 @@ class SwitchCell: UITableViewCell {
     @IBOutlet weak var onSwitch: UISwitch!
     
     weak var delegate: SwitchCellDelegate?
+    var cellType: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +32,6 @@ class SwitchCell: UITableViewCell {
     }
     
     func switchValueChanged() {
-        println("switch value changed")
         delegate?.switchCell?(self, didChangeValue: onSwitch.on)
     }
 
