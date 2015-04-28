@@ -17,25 +17,28 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
 
-//        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+            
+//            for business in businesses {
+//                println(business.name!)
+//                println(business.address!)
+//            }
+        })
+        
+//        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
+//            self.tableView.reloadData()
 //            
 //            for business in businesses {
 //                println(business.name!)
 //                println(business.address!)
 //            }
-//        })
-        
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.tableView.reloadData()
-            
-            for business in businesses {
-                println(business.name!)
-                println(business.address!)
-            }
-        }
+//        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
