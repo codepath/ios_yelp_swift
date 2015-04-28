@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1Tg-hM-se1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Yelp-->
@@ -47,7 +46,7 @@
                                                     <color key="textColor" red="0.57528409090909083" green="0.57528409090909083" blue="0.57528409090909083" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="0.07 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fas-ee-pmR">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0.07 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fas-ee-pmR">
                                                     <rect key="frame" x="274" y="8" width="38" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.57528409090909083" green="0.57528409090909083" blue="0.57528409090909083" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +64,7 @@
                                                     <color key="textColor" red="0.57528409090909083" green="0.57528409090909083" blue="0.57528409090909083" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1. Grand Pu Bah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-WR-BM1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="1. Grand Pu Bah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-WR-BM1">
                                                     <rect key="frame" x="81" y="8" width="193" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,20 +80,20 @@
                                             <constraints>
                                                 <constraint firstItem="vTK-Ts-S0m" firstAttribute="top" secondItem="dtg-xS-FEp" secondAttribute="bottom" constant="3" id="5K6-kD-Bdr"/>
                                                 <constraint firstItem="vTK-Ts-S0m" firstAttribute="leading" secondItem="Uct-Zd-E75" secondAttribute="trailing" constant="8" id="7TX-v1-7Xd"/>
-                                                <constraint firstItem="fas-ee-pmR" firstAttribute="trailing" secondItem="HAA-El-mX9" secondAttribute="trailingMargin" constant="8" id="8Pg-TG-a1h"/>
                                                 <constraint firstItem="Uct-Zd-E75" firstAttribute="leading" secondItem="HAA-El-mX9" secondAttribute="leading" constant="8" id="8j9-AZ-W1l"/>
                                                 <constraint firstItem="fas-ee-pmR" firstAttribute="top" secondItem="RIe-WR-BM1" secondAttribute="top" id="CTX-wq-XpF"/>
                                                 <constraint firstAttribute="trailing" secondItem="vTK-Ts-S0m" secondAttribute="trailing" constant="8" id="Cpp-Tb-rq7"/>
                                                 <constraint firstItem="HQT-cG-yDh" firstAttribute="top" secondItem="vTK-Ts-S0m" secondAttribute="bottom" constant="3" id="EqD-k3-na1"/>
+                                                <constraint firstAttribute="trailing" secondItem="QAP-Bc-aPv" secondAttribute="trailing" constant="8" id="SpS-6w-yba"/>
                                                 <constraint firstItem="RIe-WR-BM1" firstAttribute="leading" secondItem="Uct-Zd-E75" secondAttribute="trailing" constant="8" id="WjB-5a-WBl"/>
                                                 <constraint firstItem="vTK-Ts-S0m" firstAttribute="leading" secondItem="HQT-cG-yDh" secondAttribute="leading" id="b0m-E7-X8g"/>
                                                 <constraint firstItem="dtg-xS-FEp" firstAttribute="top" secondItem="RIe-WR-BM1" secondAttribute="bottom" constant="3" id="dea-k6-o2T"/>
-                                                <constraint firstAttribute="trailing" secondItem="QAP-Bc-aPv" secondAttribute="trailing" constant="8" id="ebK-Rd-Zqk"/>
                                                 <constraint firstItem="dtg-xS-FEp" firstAttribute="centerY" secondItem="PDn-Fj-sJi" secondAttribute="centerY" id="fWw-KJ-Rgm"/>
                                                 <constraint firstItem="PDn-Fj-sJi" firstAttribute="leading" secondItem="dtg-xS-FEp" secondAttribute="trailing" constant="8" id="gf1-gV-31b"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Uct-Zd-E75" secondAttribute="bottom" constant="12" id="gt0-zu-BA0"/>
                                                 <constraint firstItem="dtg-xS-FEp" firstAttribute="leading" secondItem="Uct-Zd-E75" secondAttribute="trailing" constant="8" id="h1u-3T-eDe"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HQT-cG-yDh" secondAttribute="bottom" constant="12" id="hoo-wb-nhV"/>
+                                                <constraint firstAttribute="trailing" secondItem="fas-ee-pmR" secondAttribute="trailing" constant="8" id="npU-jE-kAk"/>
                                                 <constraint firstItem="RIe-WR-BM1" firstAttribute="top" secondItem="HAA-El-mX9" secondAttribute="top" constant="8" id="p1T-UA-dP8"/>
                                                 <constraint firstItem="QAP-Bc-aPv" firstAttribute="top" secondItem="fas-ee-pmR" secondAttribute="bottom" constant="6" id="psQ-U2-lQx"/>
                                                 <constraint firstItem="fas-ee-pmR" firstAttribute="leading" secondItem="RIe-WR-BM1" secondAttribute="trailing" constant="8" id="seN-Qi-ZXG"/>
@@ -123,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="338"/>
+            <point key="canvasLocation" x="1485" y="337.99999999999994"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oYW-sO-WmR">
@@ -141,7 +140,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2H-Nt-87w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953" y="338"/>
+            <point key="canvasLocation" x="953" y="337.99999999999994"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
