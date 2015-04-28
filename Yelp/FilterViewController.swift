@@ -8,14 +8,25 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+@objc protocol FilterViewControllerDelegate{
+    optional func filterViewController(filterViewController: FilterViewController, didUpdateFilters filters:[String:AnyObject])
+    
+}
+
+
+class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate {
 
     @IBOutlet weak var switchTableView: UITableView!
-    
+    weak var delegate: FilterViewControllerDelegate?
     var categories: [[String:String]]!
+    var switchStates = [Int:Bool]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchTableView.dataSource = self
+        switchTableView.delegate = self
         categories = yelpCategories()
+        println(categories.count)
         // Do any additional setup after loading the view.
     }
 
@@ -31,8 +42,12 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
         cell.switchLabel.text = categories[indexPath.row]["name"]
+        
+        cell.delegate = self;
         println(categories[indexPath.row]["name"])
-
+        
+        cell.onSwitch.on = switchStates[indexPath.row] ?? false;
+        
         return cell;
     }
 
@@ -41,6 +56,18 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     @IBAction func searchAction(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion:nil)
+        
+        var filters = [String : AnyObject]();
+        var selectedCategories = [String]()
+        for (row,isSelected) in switchStates {
+            if isSelected {
+                selectedCategories.append(categories[row]["code"]!)
+            }
+        }
+        if selectedCategories.count > 0 {
+            filters["categories"] = selectedCategories
+        }
+        delegate?.filterViewController?(self, didUpdateFilters: filters)
     }
     /*
     // MARK: - Navigation
@@ -52,6 +79,11 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     
+    func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
+        let indexPath = switchTableView.indexPathForCell(switchCell)!;
+        switchStates[indexPath.row] = value;
+        
+    }
     func yelpCategories() -> [[String:String]]{
         return [["name" : "Afghan", "code": "afghani"],
             ["name" : "African", "code": "african"],
