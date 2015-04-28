@@ -8,27 +8,32 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var navTitleView: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
     var businesses: [Business]!
-    
+    var searchBar = UISearchBar()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        self.navigationItem.leftBarButtonItem =UIBarButtonItem();
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.tableView.reloadData()
-            for business in businesses {
+        searchBar.delegate = self
+        searchBar.placeholder = "search"
+        navTitleView.titleView = searchBar
+//        Business.searchWithTerm("Italian", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+//            self.businesses = businesses
+//            self.tableView.reloadData()
+//            for business in businesses {
 //                println(business.name!)
 //                println(business.address!)
-            }
-        })
+//            }
+//        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +56,16 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         cell.business = businesses[indexPath.row]
         
         return cell
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        Business.searchWithTerm(searchText, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+        })
     }
     /*
     // MARK: - Navigation
