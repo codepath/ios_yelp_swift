@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class BusinessesViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
 
     var businesses: [Business]!
     
@@ -75,7 +75,8 @@ class BusinessesViewController: UIViewController , UITableViewDataSource, UITabl
     }
     
     func searchYelp(searchTerm : String) {
-        Business.searchWithTerm(searchTerm, sort: .BestMatched, categories: [], deals: false) { (businesses: [Business]!, error: NSError!) -> Void in
+        var sortMode = YelpSortMode.BestMatched
+        Business.searchWithTerm(searchTerm, sort: sortMode, categories: [], deals: false, radius: nil) { (businesses: [Business]!, error: NSError!) -> Void in
             if businesses != nil && self.lastSearchTerm == searchTerm {
                 self.showTableIfResultsNonEmpty(businesses!.count)
                 self.businesses = businesses
@@ -99,14 +100,25 @@ class BusinessesViewController: UIViewController , UITableViewDataSource, UITabl
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let filtersViewController = navigationController.topViewController as! FiltersViewController
+        filtersViewController.delegate = self
     }
-    */
+    
+    func filtersViewController(filtersViewController : FiltersViewController, didUpdateFilters filters : [String:AnyObject]) {
+        
+        var categories = filters["categories"] as! [String]
+        var offeringADeal = filters["offering_a_deal"] as! Bool
+        var radius = filters["radius"] as! Double
+        var sortModeIndex = filters["sort_by"] as! Int
+        var sortMode = YelpSortMode(rawValue: sortModeIndex)
+        
+        Business.searchWithTerm(lastSearchTerm, sort: sortMode, categories: categories, deals: offeringADeal, radius: radius) {
+            (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+        }
+    }
 
 }

@@ -29,7 +29,6 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var businessAddressLabel: UILabel!
     @IBOutlet weak var numberReviewsLabel: UILabel!
     @IBOutlet weak var businessDistanceLabel: UILabel!
-    @IBOutlet weak var businessPriceIndicatorLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
