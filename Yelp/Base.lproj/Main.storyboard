@@ -117,7 +117,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hMf-ej-eff">
-                        <barButtonItem key="leftBarButtonItem" title="Filters" id="vyv-zz-luU">
+                        <barButtonItem key="leftBarButtonItem" title="Filters" style="plain" id="vyv-zz-luU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="OBr-zy-BgI" kind="modal" id="Lbk-EQ-DvH"/>
                             </connections>
@@ -188,11 +189,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="drT-Om-5rN">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="1R2-LG-MLB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCancelButton:" destination="Wto-vR-KGd" id="bc3-FT-nZN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="FJQ-Su-HeH">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onSearchButton:" destination="Wto-vR-KGd" id="geK-fE-2Ll"/>
                             </connections>

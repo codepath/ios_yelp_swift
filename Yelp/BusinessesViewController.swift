@@ -28,10 +28,11 @@ class BusinessesViewController: UIViewController , UITableViewDataSource, UITabl
         self.tableView.estimatedRowHeight = 120
         
         let frameWidth = self.tableView.frame.width
-        self.searchView = UISearchBar(frame: CGRectMake(-5.0, 0.0, frameWidth, 44))
+        self.searchView = UISearchBar(frame: CGRectMake(-5.0, 0.0, frameWidth, 50))
         self.searchView.delegate = self
-        self.searchView.placeholder = "Search for (Tacos's, Codepath etc)"
+        self.searchView.placeholder = "Search"
         self.navigationItem.titleView = searchView
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0.76, green: 0.07, blue: 0, alpha: 0)
         
         // hide the table view before search
         self.tableView.hidden = true

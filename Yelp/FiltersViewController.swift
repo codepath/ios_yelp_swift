@@ -40,6 +40,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.filtersTableView.dataSource = self
         self.filtersTableView.delegate = self
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0.76, green: 0.07, blue: 0, alpha: 0)
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
     }
 
