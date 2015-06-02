@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class Business: NSObject {
     let name: String?
@@ -16,6 +17,7 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
+    var coordinate: CLLocationCoordinate2D? // @todo: make this a "let" but fix init...
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
@@ -45,6 +47,14 @@ class Business: NSObject {
             }
         }
         self.address = address
+        
+        if let coordinate = dictionary.valueForKeyPath("location.coordinate") as? NSDictionary {
+            if let latitude = coordinate["latitude"] as? NSNumber {
+                if let longitude = coordinate["longitude"] as? NSNumber {
+                    self.coordinate = CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
+                }
+            }
+        }
         
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
