@@ -8,12 +8,20 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController {
+class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
+    
     var businesses: [Business]!
+    
+    let searchEntry = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.titleView = self.searchEntry
+        
+        searchEntry.delegate = self
+
 
 //        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
