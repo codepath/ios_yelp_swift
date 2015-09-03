@@ -15,7 +15,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     var businesses: [Business]!
     
-    let searchEntry = UISearchBar()
+    let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,17 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.rowHeight = UITableViewAutomaticDimension
         self.listingTable.estimatedRowHeight = 120
         
-        self.navigationItem.titleView = self.searchEntry
+        self.navigationItem.titleView = self.searchBar
         
-        searchEntry.delegate = self
+        searchBar.delegate = self
+        
+        runOrRerunSearch("restaurant")
+        
+    }
+    
+    
+    
+    func runOrRerunSearch(term : String) {
 
 
 //        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
@@ -41,7 +49,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 //        })
         
         
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(term, sort: .Distance, categories: nil,
+            deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {
@@ -51,9 +60,42 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             
             self.listingTable.reloadData()
         }
-        
 
     }
+    
+    
+    
+    
+    var searchActive : Bool = false
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchText.isEmpty) {
+            self.runOrRerunSearch("restaurant")
+        } else {
+            self.runOrRerunSearch(searchText)
+        }
+    }
+
+    
+    
+    
+    
     
     
     func tableView(listingTable: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,8 +115,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         println(indexPath.row)
         cell.NameBusiness.text = self.businesses[indexPath.row].name
         
-        // set cell's textLabel.text property
-        // set cell's detailTextLabel.text property
         return cell
     }
     
