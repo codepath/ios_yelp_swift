@@ -10,4 +10,5 @@
 
 class BusinessListingCell: UITableViewCell {
 
+    @IBOutlet weak var NameBusiness: UILabel!
 }

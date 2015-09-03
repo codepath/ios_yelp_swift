@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     
     @IBOutlet weak var listingTable: UITableView!
@@ -19,6 +19,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.listingTable.dataSource = self
+        self.listingTable.delegate = self
+        
+        self.listingTable.rowHeight = UITableViewAutomaticDimension
+        self.listingTable.estimatedRowHeight = 120
         
         self.navigationItem.titleView = self.searchEntry
         
@@ -42,17 +48,30 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
                 println(business.name!)
                 println(business.address!)
             }
+            
+            self.listingTable.reloadData()
         }
+        
+
     }
     
     
     func tableView(listingTable: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.businesses.count // Most of the time my data source is an array of something...  will replace with the actual name of the data source
+        println("COUNT")
+        if let theList = self.businesses {
+            println(theList.count)
+            return theList.count
+        } else {
+            return 0
+        }
     }
     
     
     func tableView(listingTable: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.listingTable.dequeueReusableCellWithIdentifier("BusinessCell") as! BusinessListingCell
+        println("CELLFORROW")
+        println(indexPath.row)
+        cell.NameBusiness.text = self.businesses[indexPath.row].name
         
         // set cell's textLabel.text property
         // set cell's detailTextLabel.text property
