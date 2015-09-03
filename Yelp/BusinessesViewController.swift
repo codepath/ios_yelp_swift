@@ -85,7 +85,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if (searchText.isEmpty) {
+        if (searchText.isEmpty) {
             self.runOrRerunSearch("restaurant")
         } else {
             self.runOrRerunSearch(searchText)
