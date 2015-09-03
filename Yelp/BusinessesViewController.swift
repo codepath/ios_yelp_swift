@@ -8,8 +8,10 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
 
+    
+    @IBOutlet weak var listingTable: UITableView!
     
     var businesses: [Business]!
     
@@ -32,6 +34,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 //            }
 //        })
         
+        
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
@@ -41,6 +44,24 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             }
         }
     }
+    
+    
+    func tableView(listingTable: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.businesses.count // Most of the time my data source is an array of something...  will replace with the actual name of the data source
+    }
+    
+    
+    func tableView(listingTable: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.listingTable.dequeueReusableCellWithIdentifier("BusinessCell") as! BusinessListingCell
+        
+        // set cell's textLabel.text property
+        // set cell's detailTextLabel.text property
+        return cell
+    }
+    
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
