@@ -6,15 +6,16 @@
 //  Copyright (c) 2015 Timothy Lee. All rights reserved.
 //
 
-// import Cocoa
 
-class SearchFilterViewController: UIViewController, UITableViewDelegate {
+import UIKit
+
+class SearchFilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var sliderMaxDist: UISlider!
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
 
-    
+ /*
     let categories = [["name" : "Afghan", "code": "afghani"],
         ["name" : "African", "code": "african"],
         ["name" : "American, New", "code": "newamerican"],
@@ -30,7 +31,54 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate {
         ["name" : "Bangladeshi", "code": "bangladeshi"],
         ["name" : "Barbeque", "code": "bbq"],
         ["name" : "Basque", "code": "basque"],
-        ["name" : "Bavarian", "code": "bavarian"],
+        ["name" : "Bavarian", "code": "bavarian"]]
+*/
+    
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableFoodCategory.dataSource = self
+        self.tableFoodCategory.delegate = self
+        
+        self.tableFoodCategory.rowHeight = UITableViewAutomaticDimension
+        self.tableFoodCategory.estimatedRowHeight = 120
+        
+    }
+    
+    
+    
+    
+    
+    
+    func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 30
+/*        println("COUNT")
+        if let theList = self.businesses {
+            println(theList.count)
+            return theList.count
+        } else {
+            return 0
+        } */
+    }
+    
+    
+    func tableView(tableFoodCategory: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! UITableViewCell
+        println("CELLFORROW")
+        println(indexPath.row)
+        //cell.NameBusiness.text = self.businesses[indexPath.row].name
+        
+        return cell
+    }
+
+    
+    
+    
+    
+    /*
+    ,
         ["name" : "Beer Garden", "code": "beergarden"],
         ["name" : "Beer Hall", "code": "beerhall"],
         ["name" : "Beisl", "code": "beisl"],
@@ -183,10 +231,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate {
         ["name" : "Vietnamese", "code": "vietnamese"],
         ["name" : "Wok", "code": "wok"],
         ["name" : "Wraps", "code": "wraps"],
-        ["name" : "Yugoslav", "code": "yugoslav"]]
-
-    
-    
+        ["name" : "Yugoslav", "code": "yugoslav"]]  */
     
     
 }
