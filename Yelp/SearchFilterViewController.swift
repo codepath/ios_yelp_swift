@@ -17,7 +17,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
 
     
  
-    var categories : Dictionary<String,[(String)]> = [
+    var categories : Dictionary<String,[String]> = [
         "Afghan": ["afghani"],
         "African": ["african"],
         "American, new": ["newamerican"],
@@ -35,7 +35,83 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         "Basque": ["basque"],
         "Bavarian": ["bavarian"],
         "Beer Garden": ["beergarden"],
-        "Beer Hall": ["beerhall"]
+        "Beer Hall": ["beerhall"],
+        "Beisl": ["beisl"],
+        "Belgian": ["belgian"],
+        "Bistros": ["bistros"],
+        "Black Sea": ["blacksea"],
+        "Brasseries": ["brasseries"],
+        "Brazilian": ["brazilian"],
+        "Breakfast & Brunch": ["breakfast_brunch"],
+        "British": ["british"],
+        "Buffets": ["buffets"],
+        "Bulgarian": ["bulgarian"],
+        "Burgers": ["burgers"],
+        "Burmese": ["burmese"],
+        "Cafes": ["cafes"],
+        "Cafeteria": ["cafeteria"],
+        "Cajun/Creole": ["cajun"],
+        "Cambodian": ["cambodian"],
+        "Canadian": ["New)"],
+        "Canteen": ["canteen"],
+        "Caribbean": ["caribbean"],
+        "Catalan": ["catalan"],
+        "Chech": ["chech"],
+        "Cheesesteaks": ["cheesesteaks"],
+        "Chicken Shop": ["chickenshop"],
+        "Chicken Wings": ["chicken_wings"],
+        "Chilean": ["chilean"],
+        "Chinese": ["chinese"],
+        "Comfort Food": ["comfortfood"],
+        "Corsican": ["corsican"],
+        "Creperies": ["creperies"],
+        "Cuban": ["cuban"],
+        "Curry Sausage": ["currysausage"],
+        "Cypriot": ["cypriot"],
+        "Czech": ["czech"],
+        "Czech/Slovakian": ["czechslovakian"],
+        "Danish": ["danish"],
+        "Delis": ["delis"],
+        "Diners": ["diners"],
+        "Dumplings": ["dumplings"],
+        "Eastern European": ["eastern_european"],
+        "Ethiopian": ["ethiopian"],
+        "Fast Food": ["hotdogs"],
+        "Filipino": ["filipino"],
+        "Fish & Chips": ["fishnchips"],
+        "Fondue": ["fondue"],
+        "Food Court": ["food_court"],
+        "Food Stands": ["foodstands"],
+        "French Southwest": ["sud_ouest"],
+        "French": ["french"],
+        "Galician": ["galician"],
+        "Gastropubs": ["gastropubs"],
+        "Georgian": ["georgian"],
+        "German": ["german"],
+        "Giblets": ["giblets"],
+        "Gluten-Free": ["gluten_free"],
+        "Greek": ["greek"],
+        "Halal": ["halal"],
+        "Hawaiian": ["hawaiian"],
+        "Heuriger": ["heuriger"],
+        "Himalayan/Nepalese": ["himalayan"],
+        "Hong Kong Style Cafe": ["hkcafe"],
+        "Hot Dogs": ["hotdog"],
+        "Hot Pot": ["hotpot"],
+        "Hungarian": ["hungarian"],
+        "Iberian": ["iberian"],
+        "Indian": ["indpak"],
+        "Indonesian": ["indonesian"],
+        "International": ["international"],
+        "Irish": ["irish"],
+        "Island Pub": ["island_pub"],
+        "Israeli": ["israeli"],
+        "Italian": ["italian"],
+        "Japanese": ["japanese"],
+        "Jewish": ["jewish"],
+        "Kebab": ["kebab"],
+        "Korean": ["korean"],
+        "Kosher": ["kosher"]
     ]
     
     var sortedCatNames : [String]?
@@ -68,7 +144,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Array(categories.keys).count
+        return self.sortedCatNames!.count
     }
     
     
