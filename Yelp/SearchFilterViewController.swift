@@ -14,6 +14,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var sliderMaxDist: UISlider!
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
+    
+    var doneHandler: ((Dictionary<String,[String]>) -> Void)?
 
     var numViews = 0
     
@@ -22,6 +24,9 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     var sortedCatNames : [String]?
     
     @IBAction func Button_OK(sender: AnyObject) {
+        if let cb = self.doneHandler {
+            cb(self.categories!)
+        }
         self.dismissViewControllerAnimated(true, completion:nil)
     }
     

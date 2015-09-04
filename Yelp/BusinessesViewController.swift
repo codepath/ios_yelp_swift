@@ -234,6 +234,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         let navC =  segue.destinationViewController as! UINavigationController
         if let slaveVC = navC.viewControllers[0] as? SearchFilterViewController {
             slaveVC.categories = self.categories
+            slaveVC.doneHandler = {(newDict: Dictionary<String,[String]>) -> Void in
+                    self.categories = newDict
+            }
         }
     }
 
