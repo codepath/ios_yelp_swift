@@ -15,7 +15,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
 
-    
+    var numViews = 0
  
     var categories : Dictionary<String,[String]> = [
         "Afghan": ["afghani"],
@@ -132,8 +132,10 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        numViews += 1
+        print(numViews)
+        
         sortedCatNames = (Array(self.categories.keys)).sorted { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
-
         
         self.tableFoodCategory.dataSource = self
         self.tableFoodCategory.delegate = self
@@ -147,7 +149,10 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    
+    func tableView(tableFoodCategory: UITableView, willDisplayCell cell : UITableViewCell, indexPath: NSIndexPath) {
+            // nothing needed here
+    }
+
     
     
     func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,11 +162,13 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableFoodCategory: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! CategoryListCell
-        println("CELLFORROW")
-        println(indexPath.row)
-        println(Array(categories.keys)[indexPath.row])
+        //println("CELLFORROW")
+        //println(indexPath.row)
+        //println(Array(categories.keys)[indexPath.row])
         cell.title.text = self.sortedCatNames![indexPath.row]
         
+        // Specify that the cell should be selected
+        self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
         return cell
 
     }
