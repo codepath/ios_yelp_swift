@@ -160,13 +160,18 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LBW-FC-cVt" id="jfd-De-lG7">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdl-aD-83o">
-                                                            <rect key="frame" x="48" y="2" width="38" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdl-aD-83o">
+                                                            <rect key="frame" x="24" y="4" width="335" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Vdl-aD-83o" firstAttribute="leading" secondItem="jfd-De-lG7" secondAttribute="leading" constant="24" id="96X-vX-cRb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Vdl-aD-83o" secondAttribute="trailing" id="HmC-6m-e8k"/>
+                                                        <constraint firstAttribute="centerY" secondItem="Vdl-aD-83o" secondAttribute="centerY" id="hck-h9-lsE"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="title" destination="Vdl-aD-83o" id="CTi-nM-XiM"/>
