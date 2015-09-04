@@ -24,6 +24,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     var sortedCatNames : [String]?
     
     @IBAction func Button_OK(sender: AnyObject) {
+        // Propagate the latest category DB back to the parent VC to make persistent
+        // the changes.
         if let cb = self.doneHandler {
             cb(self.categories!)
         }
@@ -35,8 +37,6 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         self.dismissViewControllerAnimated(true, completion:nil)
     }
     
-
-    // I'm using native multiple-selection support:
     
     
     override func viewDidLoad() {
@@ -51,6 +51,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
             self.tableFoodCategory.dataSource = self
             self.tableFoodCategory.delegate = self
             
+            // Important: I'm taking advantage of native mult-sel support:
             self.tableFoodCategory.allowsMultipleSelection = true
             
             self.tableFoodCategory.rowHeight = UITableViewAutomaticDimension
@@ -65,8 +66,20 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
             // nothing needed here
     }
 
+
+    
+    // DID SELECT ROW
+    func tableView(tableFoodCategory: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let catname : String = self.sortedCatNames?[indexPath.row] {
+            
+            // Specify that the cell should be selected
+            self.categories?[catname]?.append("selected")
+        }
+    }
+
     
     
+    // numberOfRowsInSection
     func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sortedCatNames!.count
     }
@@ -74,15 +87,23 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableFoodCategory: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! CategoryListCell
-        //println("CELLFORROW")
-        //println(indexPath.row)
-        //println(Array(categories.keys)[indexPath.row])
-        cell.title.text = self.sortedCatNames![indexPath.row]
-        
-        // Specify that the cell should be selected
-        self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
-        return cell
 
+        if let catname : String = self.sortedCatNames?[indexPath.row] {
+            cell.title.text = catname
+        
+            // Specify that the cell should be selected
+            if let valueLen = (self.categories?[catname]?.count) {
+                if valueLen > 1 {
+                    self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
+                }
+            }
+        }
+        return cell
     }
+    
+    
+    
+    
+    
     
 }
