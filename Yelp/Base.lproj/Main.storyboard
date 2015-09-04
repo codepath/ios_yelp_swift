@@ -209,8 +209,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Filters" id="Uxe-Tm-Tl2">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4YG-7M-Li5"/>
-                        <barButtonItem key="rightBarButtonItem" title="OK" id="Wtl-ad-krn"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4YG-7M-Li5">
+                            <connections>
+                                <action selector="Button_Cancel:" destination="wZm-rG-AM1" id="zQ5-M9-3e1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="Wtl-ad-krn">
+                            <connections>
+                                <action selector="Button_OK:" destination="wZm-rG-AM1" id="lYF-FK-zH7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="boolShowOnlyDeals" destination="7zM-aS-BRO" id="EaI-yc-cW6"/>

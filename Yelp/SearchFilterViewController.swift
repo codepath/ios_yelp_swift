@@ -116,10 +116,17 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     var sortedCatNames : [String]?
     
+    @IBAction func Button_OK(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion:nil)
+    }
+    
+    
+    @IBAction func Button_Cancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion:nil)
+    }
+    
 
-    // I'm trying to use native multiple-selection support:
-    // http://stackoverflow.com/questions/3040894/uitableview-multiple-selection
-    // but perhaps allowsMultipleSelection is deprecated?
+    // I'm using native multiple-selection support:
     
     
     override func viewDidLoad() {
