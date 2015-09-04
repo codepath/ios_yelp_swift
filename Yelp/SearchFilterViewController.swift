@@ -71,9 +71,16 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     // DID SELECT ROW
     func tableView(tableFoodCategory: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let catname : String = self.sortedCatNames?[indexPath.row] {
-            
-            // Specify that the cell should be selected
+            // Persistently record the selection
             self.categories?[catname]?.append("selected")
+        }
+    }
+
+    // DID DESELECT ROW
+    func tableView(tableFoodCategory: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if let catname : String = self.sortedCatNames?[indexPath.row] {
+            // Persistently record the selection
+            self.categories?[catname]?.removeAtIndex(1)
         }
     }
 
