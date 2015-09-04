@@ -46,19 +46,19 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return Array(categories.keys).count
     }
     
     
     func tableView(tableFoodCategory: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! UITableViewCell
+        let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! CategoryListCell
         println("CELLFORROW")
         println(indexPath.row)
-        //cell.NameBusiness.text = self.businesses[indexPath.row].name
+        println(Array(categories.keys)[indexPath.row])
+        cell.title.text = Array(categories.keys)[indexPath.row] as String
         
         return cell
-    }
 
-    
+    }
     
 }
