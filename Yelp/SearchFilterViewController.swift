@@ -15,7 +15,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
 
- /*
+    /*
+ 
     let categories = [["name" : "Afghan", "code": "afghani"],
         ["name" : "African", "code": "african"],
         ["name" : "American, New", "code": "newamerican"],
@@ -44,6 +45,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         
         self.tableFoodCategory.rowHeight = UITableViewAutomaticDimension
         self.tableFoodCategory.estimatedRowHeight = 120
+ 
         
     }
     
