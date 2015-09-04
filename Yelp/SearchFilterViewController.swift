@@ -73,6 +73,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         if let catname : String = self.sortedCatNames?[indexPath.row] {
             // Persistently record the selection
             self.categories?[catname]?.append("selected")
+            self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
         }
     }
 
@@ -81,6 +82,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         if let catname : String = self.sortedCatNames?[indexPath.row] {
             // Persistently record the selection
             self.categories?[catname]?.removeAtIndex(1)
+            self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
         }
     }
 
@@ -95,12 +97,15 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableFoodCategory: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableFoodCategory.dequeueReusableCellWithIdentifier("CellFoodCategory") as! CategoryListCell
 
+        cell.accessoryType = UITableViewCellAccessoryType.None
+
         if let catname : String = self.sortedCatNames?[indexPath.row] {
             cell.title.text = catname
         
-            // Specify that the cell should be selected
+            // This cell should show the selected appearance
             if let valueLen = (self.categories?[catname]?.count) {
                 if valueLen > 1 {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                     self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
                 }
             }
