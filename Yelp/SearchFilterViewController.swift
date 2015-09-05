@@ -38,7 +38,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         self.tableFoodCategory.dataSource = self
         self.tableFoodCategory.delegate = self
         

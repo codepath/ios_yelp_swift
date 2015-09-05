@@ -128,7 +128,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navC =  segue.destinationViewController as! UINavigationController
         if let slaveVC = navC.viewControllers[0] as? SearchFilterViewController {
-            slaveVC.state = state
+            slaveVC.state.initFromOther(self.state)
             slaveVC.doneHandler = {(newDict: FilterState) -> Void in
                     self.state = newDict
             }

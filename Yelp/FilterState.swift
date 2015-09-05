@@ -201,6 +201,10 @@ class FilterState {
             selectionStatus.append(false)
         }
     }
+    
+    func initFromOther(other:FilterState) {
+        self.selectionStatus = other.selectionStatus
+    }
 
     
     
