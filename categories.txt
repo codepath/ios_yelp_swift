@@ -32,7 +32,6 @@
 "Cafeteria": ["cafeteria"],
 "Cajun/Creole": ["cajun"],
 "Cambodian": ["cambodian"],
-"Canadian": ["New)"],
 "Canteen": ["canteen"],
 "Caribbean": ["caribbean"],
 "Catalan": ["catalan"],

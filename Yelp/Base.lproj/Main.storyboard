@@ -154,13 +154,13 @@
                                         <rect key="frame" x="0.0" y="23" width="359" height="390"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CellFoodCategory" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellFoodCategory" rowHeight="26" id="LBW-FC-cVt" customClass="CategoryListCell" customModule="Yelp" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CellFoodCategory" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellFoodCategory" rowHeight="20" id="LBW-FC-cVt" customClass="CategoryListCell" customModule="Yelp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LBW-FC-cVt" id="jfd-De-lG7">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdl-aD-83o">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdl-aD-83o">
                                                             <rect key="frame" x="24" y="4" width="335" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
