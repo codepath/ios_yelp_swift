@@ -17,11 +17,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     var doneHandler : ((FilterState) -> Void)?
     
-    var numViews = 0
-    
     var state = FilterState()
     
-    var sortedCatNames : [String]?
     
     @IBAction func Button_OK(sender: AnyObject) {
         // Propagate the latest category DB back to the parent VC to make persistent
@@ -42,21 +39,13 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        numViews += 1
-        print(numViews)
+        self.tableFoodCategory.dataSource = self
+        self.tableFoodCategory.delegate = self
         
-        if let categories = self.state.categories {
-            sortedCatNames = (Array(categories.keys)).sorted { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
-            
-            self.tableFoodCategory.dataSource = self
-            self.tableFoodCategory.delegate = self
-            
-            // Important: I'm taking advantage of native mult-sel support:
-            self.tableFoodCategory.allowsMultipleSelection = true
-            
-            self.tableFoodCategory.rowHeight = 30
-        }
+        // Important: I'm taking advantage of native mult-sel support:
+        self.tableFoodCategory.allowsMultipleSelection = true
         
+        self.tableFoodCategory.rowHeight = 30
     }
     
     
@@ -69,27 +58,24 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     
     // DID SELECT ROW
     func tableView(tableFoodCategory: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let catname : String = self.sortedCatNames?[indexPath.row] {
-            // Persistently record the selection
-            self.categories?[catname]?.append("selected")
-            self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-        }
+        // Persistently record the selection
+        self.state.selectionStatus[indexPath.row] = true
+        self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
     
     // DID DESELECT ROW
     func tableView(tableFoodCategory: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if let catname : String = self.sortedCatNames?[indexPath.row] {
-            // Persistently record the selection
-            self.categories?[catname]?.removeAtIndex(1)
-            self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-        }
+        // Persistently record the selection
+        self.state.selectionStatus[indexPath.row] = false
+        self.tableFoodCategory.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
+    
     
     
     
     // INQUIRE NUMBER OF ROWS IN TABLE
     func tableView(tableFoodCategory: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sortedCatNames!.count
+        return self.state.arrayCategories.count
     }
     
     
@@ -99,23 +85,18 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         
         cell.accessoryType = UITableViewCellAccessoryType.None
         
-        if let catname : String = self.sortedCatNames?[indexPath.row] {
-            cell.title.text = catname
+        let catdetails = self.state.arrayCategories[indexPath.row]
+        cell.title.text = catdetails[1]
+        
+        // This cell should show the selected appearance
+        if self.state.selectionStatus[indexPath.row] {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
             
-            // This cell should show the selected appearance
-            if let valueLen = (self.categories?[catname]?.count) {
-                if valueLen > 1 {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    self.tableFoodCategory.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
-                }
-            }
         }
+        
         return cell
     }
-    
-    
-    
-    
     
     
 }

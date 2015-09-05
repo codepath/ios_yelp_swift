@@ -181,16 +181,24 @@ class FilterState {
         "yugoslav": "Yugoslav"
     ]
     
-    let arrayCatnames : [String]
+    // Array of tuplearrays of form (catkey, cattitle)
+    var arrayCategories : [[String]] = []
     
-    var selectionStatus = [String: Bool]()
-    
+    // Maps row index to boolean
+    var selectionStatus : [Bool] = []
     
     
     init() {
-        arrayCatnames = (Array(categories.values)).sorted { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
-        for x in Array(categories.keys) {
-            selectionStatus[x] = false
+        let arrayCatkeys = (Array(categories.keys)).sorted {
+            // Our goal is to sort the categories by the display titles (not by the keys)
+            let left = self.categories[$0]!
+            let right = self.categories[$1]!
+            return left.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending
+        }
+        
+        for x in arrayCatkeys {
+            arrayCategories.append([x, self.categories[x]!])
+            selectionStatus.append(false)
         }
     }
 
