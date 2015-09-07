@@ -26,21 +26,37 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gy6-uI-efH" id="Jde-cX-LTt">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RestaurantName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-Cb-RTN">
-                                                    <rect key="frame" x="0.0" y="8" width="375" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="524-Ma-O7h">
+                                                    <rect key="frame" x="8" y="3" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="SIs-L8-quf"/>
+                                                        <constraint firstAttribute="height" constant="40" id="YV5-jM-VMC"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RestaurantName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-Cb-RTN">
+                                                    <rect key="frame" x="54" y="0.0" width="316" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.5 miles, 155 Channel Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiY-OE-vM1">
+                                                    <rect key="frame" x="54" y="24" width="190" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GAN-Cb-RTN" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="8" id="QML-H4-2oE"/>
-                                                <constraint firstItem="GAN-Cb-RTN" firstAttribute="leading" secondItem="Jde-cX-LTt" secondAttribute="leading" id="YS9-no-PGj"/>
-                                                <constraint firstAttribute="trailing" secondItem="GAN-Cb-RTN" secondAttribute="trailing" id="clu-pd-7VP"/>
+                                                <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="3" id="H4f-mm-kok"/>
+                                                <constraint firstAttribute="trailing" secondItem="GAN-Cb-RTN" secondAttribute="trailing" constant="5" id="Rm8-09-ItI"/>
+                                                <constraint firstItem="GAN-Cb-RTN" firstAttribute="leading" secondItem="524-Ma-O7h" secondAttribute="trailing" constant="10" id="Wff-OC-E0C"/>
+                                                <constraint firstItem="524-Ma-O7h" firstAttribute="leading" secondItem="Jde-cX-LTt" secondAttribute="leading" constant="8" id="arX-jz-TDy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="NameBusiness" destination="GAN-Cb-RTN" id="fbZ-bk-2F1"/>
+                                            <outlet property="imageviewBusiness" destination="524-Ma-O7h" id="IKD-ea-nTW"/>
+                                            <outlet property="labelDistanceAddress" destination="HiY-OE-vM1" id="gt0-KB-E5L"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -123,7 +139,7 @@
                                             <constraint firstAttribute="width" constant="90" id="gY0-3s-dSM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.5" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="yil-tf-cyw">
@@ -135,13 +151,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4A-40-SEZ">
                                         <rect key="frame" x="10" y="26" width="21" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3W3-Ul-0Ts">
                                         <rect key="frame" x="328" y="27" width="16" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

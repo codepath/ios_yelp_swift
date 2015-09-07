@@ -108,11 +108,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(listingTable: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let details = self.businesses[indexPath.row]
         let cell = self.listingTable.dequeueReusableCellWithIdentifier("BusinessCell") as! BusinessListingCell
         println("CELLFORROW")
         println(indexPath.row)
-        cell.NameBusiness.text = self.businesses[indexPath.row].name
-        
+        cell.NameBusiness.text = details.name
+        cell.imageviewBusiness.setImageWithURL(details.imageURL)        
         return cell
     }
     
