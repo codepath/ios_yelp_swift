@@ -116,8 +116,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

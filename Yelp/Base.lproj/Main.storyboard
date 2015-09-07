@@ -108,22 +108,44 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssm-k4-EdS" userLabel="SectionMaxDistance">
                                 <rect key="frame" x="8" y="128" width="359" height="55"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum distance from you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI0-70-O1L">
-                                        <rect key="frame" x="3" y="3" width="183" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maximum distance from you:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI0-70-O1L">
+                                        <rect key="frame" x="3" y="3" width="187" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yil-tf-cyw">
-                                        <rect key="frame" x="14" y="23" width="331" height="31"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXb-HU-IsY">
+                                        <rect key="frame" x="200" y="3" width="46" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.5" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="yil-tf-cyw">
+                                        <rect key="frame" x="34" y="20" width="291" height="31"/>
                                     </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4A-40-SEZ">
+                                        <rect key="frame" x="8" y="26" width="21" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3W3-Ul-0Ts">
+                                        <rect key="frame" x="328" y="27" width="16" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="yil-tf-cyw" firstAttribute="centerY" secondItem="F4A-40-SEZ" secondAttribute="centerY" id="2Qi-tM-6Nl"/>
                                     <constraint firstAttribute="height" constant="55" id="6o4-uA-a7I"/>
-                                    <constraint firstAttribute="trailing" secondItem="yil-tf-cyw" secondAttribute="trailing" constant="16" id="u0q-Ci-34N"/>
-                                    <constraint firstAttribute="centerY" secondItem="yil-tf-cyw" secondAttribute="centerY" constant="-10" id="uZk-9c-eBY"/>
-                                    <constraint firstItem="yil-tf-cyw" firstAttribute="leading" secondItem="Ssm-k4-EdS" secondAttribute="leading" constant="16" id="vag-24-e3a"/>
+                                    <constraint firstItem="yil-tf-cyw" firstAttribute="leading" secondItem="F4A-40-SEZ" secondAttribute="trailing" constant="5" id="HR6-lB-cSu"/>
+                                    <constraint firstItem="3W3-Ul-0Ts" firstAttribute="centerY" secondItem="yil-tf-cyw" secondAttribute="centerY" id="WbQ-QT-WdD"/>
+                                    <constraint firstItem="3W3-Ul-0Ts" firstAttribute="leading" secondItem="yil-tf-cyw" secondAttribute="trailing" constant="5" id="qmz-Ao-ypi"/>
+                                    <constraint firstAttribute="trailing" secondItem="yil-tf-cyw" secondAttribute="trailing" constant="36" id="u0q-Ci-34N"/>
+                                    <constraint firstAttribute="centerY" secondItem="yil-tf-cyw" secondAttribute="centerY" constant="-7" id="uZk-9c-eBY"/>
+                                    <constraint firstItem="yil-tf-cyw" firstAttribute="leading" secondItem="Ssm-k4-EdS" secondAttribute="leading" constant="36" id="vag-24-e3a"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3r-OT-OOb" userLabel="SectionHowToSort">
