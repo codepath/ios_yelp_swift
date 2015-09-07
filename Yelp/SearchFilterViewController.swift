@@ -27,10 +27,17 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
+
+    func updateDistFeedback() {
+      let slider = sliderMaxDist
+      labelCurrentDistSelection.text = (NSString(format: "%.1f", slider.value) as String) + " miles"
+    }
+
+
     @IBAction func Slider_HandleValueChanged(sender: AnyObject) {
         if let slider = sender as? UISlider {
             self.state.maxDistance = slider.value
-            labelCurrentDistSelection.text = (NSString(format: "%.1f", slider.value) as String) + " miles"
+            self.updateDistFeedback()
         }
     }
     
@@ -58,8 +65,12 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         
         // Important: I'm taking advantage of native mult-sel support:
         self.tableFoodCategory.allowsMultipleSelection = true
-        
         self.tableFoodCategory.rowHeight = 30
+
+        // Init the GUI controls to match the passed-in state
+        self.sliderMaxDist.value = self.state.maxDistance
+        self.boolShowOnlyDeals.setOn(self.state.boolLookOnlyForDeals, animated:false)
+        self.updateDistFeedback()
     }
     
     

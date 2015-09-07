@@ -118,7 +118,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXb-HU-IsY">
-                                        <rect key="frame" x="195" y="3" width="46" height="17"/>
+                                        <rect key="frame" x="195" y="3" width="90" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="gY0-3s-dSM"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>

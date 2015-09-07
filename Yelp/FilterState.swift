@@ -211,8 +211,8 @@ class FilterState {
     
     func initFromOther(other:FilterState) {
         self.selectionStatus = other.selectionStatus
+        self.maxDistance = other.maxDistance
+        self.boolLookOnlyForDeals = other.boolLookOnlyForDeals
     }
-
-    
     
 }
