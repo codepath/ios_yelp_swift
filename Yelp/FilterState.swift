@@ -187,7 +187,8 @@ class FilterState {
     // Maps row index to boolean
     var selectionStatus : [Bool] = []
 
-    var maxDistance = 5.0
+    var maxDistance : Float = 5.0
+    var boolLookOnlyForDeals = true
 
     
 

@@ -14,11 +14,25 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var sliderMaxDist: UISlider!
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
+    @IBOutlet weak var labelCurrentDistSelection: UILabel!
     
     var doneHandler : ((FilterState) -> Void)?
     
     var state = FilterState()
+
     
+    @IBAction func Switch_Deal_HandleToggle(sender: AnyObject) {
+        if let switcheroo = sender as? UISwitch {
+            self.state.boolLookOnlyForDeals = switcheroo.on
+        }
+    }
+
+    @IBAction func Slider_HandleValueChanged(sender: AnyObject) {
+        if let slider = sender as? UISlider {
+            self.state.maxDistance = slider.value
+            labelCurrentDistSelection.text = (NSString(format: "%.1f", slider.value) as String) + " miles"
+        }
+    }
     
     @IBAction func Button_OK(sender: AnyObject) {
         // Propagate the latest category DB back to the parent VC to make persistent
