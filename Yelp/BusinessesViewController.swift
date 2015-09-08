@@ -15,6 +15,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var businesses: [Business]!
     
     var state = FilterState()
+
+    var currentSearchTerm = "restaurant"
     
     let searchBar = UISearchBar()
     
@@ -24,7 +26,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.dataSource = self
         self.listingTable.delegate = self
         
-        self.listingTable.rowHeight = 85 //UITableViewAutomaticDimension
+        self.listingTable.rowHeight = 75 //UITableViewAutomaticDimension
         //self.listingTable.estimatedRowHeight = 120
         
         self.navigationItem.titleView = self.searchBar
@@ -87,10 +89,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchText.isEmpty) {
-            self.runOrRerunSearch("restaurant")
+            self.currentSearchTerm = "restaurant"
         } else {
-            self.runOrRerunSearch(searchText)
+            self.currentSearchTerm = searchText
         }
+        self.runOrRerunSearch(self.currentSearchTerm)
     }
 
     
@@ -131,7 +134,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         if let slaveVC = navC.viewControllers[0] as? SearchFilterViewController {
             slaveVC.state.initFromOther(self.state)
             slaveVC.doneHandler = {(newDict: FilterState) -> Void in
-                    self.state = newDict
+                self.state = newDict
+                self.runOrRerunSearch(self.currentSearchTerm)
             }
         }
     }

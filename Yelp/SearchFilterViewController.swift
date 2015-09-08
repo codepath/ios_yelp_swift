@@ -40,6 +40,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
             self.updateDistFeedback()
         }
     }
+
+
     
     @IBAction func Button_OK(sender: AnyObject) {
         // Propagate the latest category DB back to the parent VC to make persistent
@@ -49,7 +51,6 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         }
         self.dismissViewControllerAnimated(true, completion:nil)
     }
-    
     
     @IBAction func Button_Cancel(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion:nil)
