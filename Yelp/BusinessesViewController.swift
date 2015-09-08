@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftLoader
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
@@ -40,6 +41,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func runOrRerunSearch(term : String) {
+        
+        SwiftLoader.show(animated: true)
 
         Business.searchWithTerm(term, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
             deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -51,6 +54,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             }
             
             self.listingTable.reloadData()
+            SwiftLoader.hide()
         }
 
     }
