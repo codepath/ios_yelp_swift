@@ -294,7 +294,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.892051658505988" blue="0.88589174727459707" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.9490196704864502" green="0.97647064924240112" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="Ssm-k4-EdS" firstAttribute="trailing" secondItem="O3r-OT-OOb" secondAttribute="trailing" id="2V5-jp-2xC"/>
                             <constraint firstItem="Ssm-k4-EdS" firstAttribute="leading" secondItem="nJ8-Ga-8ZD" secondAttribute="leading" constant="8" id="53d-Vb-ixk"/>
