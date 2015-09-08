@@ -57,15 +57,15 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func runOrRerunSearch() {
         
         if (self.boolSearchTermAwaitingProcessing && !self.boolSearchInProgress) {
-            SwiftLoader.show(animated: true)
             self.boolSearchInProgress = true
             self.boolSearchTermAwaitingProcessing = false
+            SwiftLoader.show(animated: false)
             Business.searchWithTerm(self.currentSearchTerm, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
                 deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
+                    SwiftLoader.hide()
                     self.businesses = businesses
                     self.listingTable.reloadData()
                     self.boolSearchInProgress = false
-                    SwiftLoader.hide()
                     if self.boolSearchTermAwaitingProcessing {
                         // Hey - a change in the current search term came in from the user
                         // while we were awaiting the completion of this async query.
