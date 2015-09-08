@@ -24,8 +24,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.dataSource = self
         self.listingTable.delegate = self
         
-        self.listingTable.rowHeight = UITableViewAutomaticDimension
-        self.listingTable.estimatedRowHeight = 120
+        self.listingTable.rowHeight = 85 //UITableViewAutomaticDimension
+        //self.listingTable.estimatedRowHeight = 120
         
         self.navigationItem.titleView = self.searchBar
         
@@ -39,7 +39,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func runOrRerunSearch(term : String) {
 
-
 //        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
 //            
@@ -49,9 +48,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 //            }
 //        })
         
-        
-        Business.searchWithTerm(term, sort: .Distance, categories: nil,
-            deals: nil) { (businesses: [Business]!, error: NSError!) -> Void in
+
+        // self.state has:  selectionStatus, maxDistance, boolLookOnlyForDeals, 
+        Business.searchWithTerm(term, sort: self.state.sortMode, categories: self.state.getSetOfDesiredCategories(),
+            deals: self.state.boolLookOnlyForDeals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {
@@ -114,6 +114,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         //println(indexPath.row)
         cell.NameBusiness.text = details.name
         cell.imageviewBusiness.setImageWithURL(details.imageURL)
+        cell.imageviewRating.setImageWithURL(details.ratingImageURL)
         cell.labelDistanceAddress.text = details.distance! + ", " + details.address!
         return cell
     }

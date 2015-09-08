@@ -190,9 +190,8 @@ class FilterState {
     var maxDistance : Float = 5.0
     var boolLookOnlyForDeals = true
 
-    
-
-    let sortKeys = [ "by distance", "by fuss" ]
+    var sortMode : YelpSortMode = .Distance
+    let sortModes_forDisplay = [ "Best match", "Nearest distance", "Highest Rated" ]
     
     
     init() {
@@ -213,6 +212,21 @@ class FilterState {
         self.selectionStatus = other.selectionStatus
         self.maxDistance = other.maxDistance
         self.boolLookOnlyForDeals = other.boolLookOnlyForDeals
+        self.sortMode = other.sortMode
     }
+
+    func getSetOfDesiredCategories() -> [String]? {
+        var result : [String] = []
+        for idx in 0...(selectionStatus.count-1) {
+            if selectionStatus[idx] {
+               result.append(arrayCategories[idx][0])
+            }
+        }
+        if result.count == 0 {
+            return nil
+        }else{
+            return result
+        }
+    }   
     
 }
