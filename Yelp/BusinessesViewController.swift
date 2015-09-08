@@ -147,6 +147,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             slaveVC.state.initFromOther(self.state)
             slaveVC.doneHandler = {(newDict: FilterState) -> Void in
                 self.state = newDict
+                self.boolSearchTermAwaitingProcessing = true
                 self.runOrRerunSearch()
             }
         }
