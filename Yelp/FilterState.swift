@@ -190,8 +190,9 @@ class FilterState {
     var maxDistance : Float = 5.0
     var boolLookOnlyForDeals = false
 
-    var sortMode : YelpSortMode = .Distance
-    let sortModes_forDisplay = [ "Best match", "Nearest distance", "Highest Rated" ]
+
+    var curSortModeIndex = 0
+    let sortModes_Ordering = [ YelpSortMode.Distance, YelpSortMode.BestMatched, YelpSortMode.HighestRated ]
     
     
     init() {
@@ -214,7 +215,7 @@ class FilterState {
         self.selectionStatus = other.selectionStatus
         self.maxDistance = other.maxDistance
         self.boolLookOnlyForDeals = other.boolLookOnlyForDeals
-        self.sortMode = other.sortMode
+        self.curSortModeIndex = other.curSortModeIndex
     }
     
 

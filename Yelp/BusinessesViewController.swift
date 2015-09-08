@@ -41,7 +41,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func runOrRerunSearch(term : String) {
 
-        Business.searchWithTerm(term, sort: self.state.sortMode, categories: self.state.getSetOfDesiredCategories(),
+        Business.searchWithTerm(term, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
             deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             

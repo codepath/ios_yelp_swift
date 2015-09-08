@@ -15,11 +15,19 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var boolShowOnlyDeals: UISwitch!
     @IBOutlet weak var tableFoodCategory: UITableView!
     @IBOutlet weak var labelCurrentDistSelection: UILabel!
+    @IBOutlet weak var chooserSortBy: UISegmentedControl!
     
     var doneHandler : ((FilterState) -> Void)?
     
     var state = FilterState()
 
+    
+    @IBAction func chooser_sorting_HandleValueChanged(sender: AnyObject) {
+        if let chooser = sender as? UISegmentedControl {
+            self.state.curSortModeIndex = chooser.selectedSegmentIndex
+        }
+        
+    }
     
     @IBAction func Switch_Deal_HandleToggle(sender: AnyObject) {
         if let switcheroo = sender as? UISwitch {
@@ -71,6 +79,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         // Init the GUI controls to match the passed-in state
         self.sliderMaxDist.value = self.state.maxDistance
         self.boolShowOnlyDeals.setOn(self.state.boolLookOnlyForDeals, animated:false)
+        self.chooserSortBy.selectedSegmentIndex = self.state.curSortModeIndex
         self.updateDistFeedback()
     }
     
