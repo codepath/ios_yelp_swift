@@ -20,7 +20,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
     var doneHandler : ((FilterState) -> Void)?
     
     var state = FilterState()
-
+    
     
     @IBAction func chooser_sorting_HandleValueChanged(sender: AnyObject) {
         if let chooser = sender as? UISegmentedControl {
@@ -34,22 +34,22 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
             self.state.boolLookOnlyForDeals = switcheroo.on
         }
     }
-
-
+    
+    
     func updateDistFeedback() {
-      let slider = sliderMaxDist
-      labelCurrentDistSelection.text = (NSString(format: "%.1f", slider.value) as String) + " miles"
+        let slider = sliderMaxDist
+        labelCurrentDistSelection.text = (NSString(format: "%.1f", slider.value) as String) + " miles"
     }
-
-
+    
+    
     @IBAction func Slider_HandleValueChanged(sender: AnyObject) {
         if let slider = sender as? UISlider {
             self.state.maxDistance = slider.value
             self.updateDistFeedback()
         }
     }
-
-
+    
+    
     
     @IBAction func Button_OK(sender: AnyObject) {
         // Propagate the latest category DB back to the parent VC to make persistent
@@ -75,7 +75,7 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         // Important: I'm taking advantage of native mult-sel support:
         self.tableFoodCategory.allowsMultipleSelection = true
         self.tableFoodCategory.rowHeight = 30
-
+        
         // Init the GUI controls to match the passed-in state
         self.sliderMaxDist.value = self.state.maxDistance
         self.boolShowOnlyDeals.setOn(self.state.boolLookOnlyForDeals, animated:false)

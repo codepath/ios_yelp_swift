@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0A0-nd-995">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0A0-nd-995">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -34,13 +34,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RestaurantName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-Cb-RTN">
-                                                    <rect key="frame" x="68" y="5" width="302" height="19.5"/>
+                                                    <rect key="frame" x="68" y="5" width="302" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5 miles, 155 Channel Street" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiY-OE-vM1">
-                                                    <rect key="frame" x="68" y="27.5" width="302" height="17"/>
+                                                    <rect key="frame" x="68" y="27" width="302" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -75,8 +75,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-nP-57z">
+                                <rect key="frame" x="46" y="85" width="282" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Your current filter and search term returns zero items.  Please revise your search/filter...">
+                                        <attributes>
+                                            <color key="NSColor" red="0.97647064924240112" green="0.16470588743686676" blue="0.11764706671237946" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0A0-nd-995" firstAttribute="top" secondItem="nMh-hO-3jF" secondAttribute="top" id="09n-df-D9k"/>
+                            <constraint firstItem="KAH-Ri-2NT" firstAttribute="top" secondItem="0A0-nd-995" secondAttribute="bottom" id="DRv-Ev-Qnn"/>
+                            <constraint firstAttribute="trailing" secondItem="Vs2-nP-57z" secondAttribute="trailing" constant="47" id="H8k-EA-7Vy"/>
+                            <constraint firstAttribute="trailing" secondItem="0A0-nd-995" secondAttribute="trailing" id="c7s-pU-fET"/>
+                            <constraint firstItem="0A0-nd-995" firstAttribute="leading" secondItem="nMh-hO-3jF" secondAttribute="leading" id="lGO-9z-alx"/>
+                            <constraint firstItem="Vs2-nP-57z" firstAttribute="top" secondItem="nMh-hO-3jF" secondAttribute="top" constant="85" id="tDN-hV-UWM"/>
+                            <constraint firstItem="Vs2-nP-57z" firstAttribute="leading" secondItem="nMh-hO-3jF" secondAttribute="leading" constant="46" id="zAo-EZ-Baf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OZz-vS-uvz">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="OIe-oL-86G">
@@ -94,6 +117,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="labelExplainZeroResults" destination="Vs2-nP-57z" id="s2t-U9-PlW"/>
                         <outlet property="listingTable" destination="0A0-nd-995" id="4Hg-IW-fpI"/>
                     </connections>
                 </viewController>

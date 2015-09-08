@@ -11,6 +11,7 @@ import UIKit
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var listingTable: UITableView!
+    @IBOutlet weak var labelExplainZeroResults: UILabel!
     
     var businesses: [Business]!
     
@@ -60,6 +61,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             self.boolSearchInProgress = true
             self.boolSearchTermAwaitingProcessing = false
             SwiftLoader.show(animated: false)
+            self.labelExplainZeroResults.hidden = true
             Business.searchWithTerm(self.currentSearchTerm, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
                 deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
                     SwiftLoader.hide()
@@ -71,6 +73,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                         // while we were awaiting the completion of this async query.
                         // It's time to launch another search.
                         self.runOrRerunSearch()
+                    } else {
+                        if let listOfResults = self.businesses {
+                            self.labelExplainZeroResults.hidden = (listOfResults.count > 0)
+                        }
                     }
             }
         }

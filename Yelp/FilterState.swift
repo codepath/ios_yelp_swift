@@ -186,12 +186,12 @@ class FilterState {
     
     // Maps row index to boolean
     var selectionStatus : [Bool] = []
-
+    
     var maxDistance : Float = 5.0
     var boolLookOnlyForDeals = false
-
-
-    var curSortModeIndex = 0
+    
+    
+    var curSortModeIndex = 1
     let sortModes_Ordering = [ YelpSortMode.Distance, YelpSortMode.BestMatched, YelpSortMode.HighestRated ]
     
     
@@ -218,14 +218,14 @@ class FilterState {
         self.curSortModeIndex = other.curSortModeIndex
     }
     
-
+    
     // The Yelp API wants an array listing just the categories desired, so I need
     // to map the sparse selectionStatus array-of-bool into that non-sparse format.
     func getSetOfDesiredCategories() -> [String]? {
         var result : [String] = []
         for idx in 0...(selectionStatus.count-1) {
             if selectionStatus[idx] {
-               result.append(arrayCategories[idx][0])
+                result.append(arrayCategories[idx][0])
             }
         }
         if result.count == 0 {
