@@ -1,5 +1,3 @@
-
-
 //
 //  BSLoader.swift
 //  Brainstorage

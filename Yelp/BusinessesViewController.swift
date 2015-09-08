@@ -7,19 +7,29 @@
 //
 
 import UIKit
-import SwiftLoader
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-
+    
     @IBOutlet weak var listingTable: UITableView!
     
     var businesses: [Business]!
     
     var state = FilterState()
-
-    var currentSearchTerm = "restaurant"
+    
+    let defaultSearchTerm = "restaurant"
+    var currentSearchTerm : String
+    var boolSearchInProgress = false
+    var boolSearchTermAwaitingProcessing = true
     
     let searchBar = UISearchBar()
+    
+    
+    required init(coder aDecoder: NSCoder) {
+        currentSearchTerm = defaultSearchTerm
+        super.init(coder: aDecoder)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,36 +37,44 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.dataSource = self
         self.listingTable.delegate = self
         
-        self.listingTable.rowHeight = 75 //UITableViewAutomaticDimension
-        //self.listingTable.estimatedRowHeight = 120
+        self.listingTable.rowHeight = 75
         
         self.navigationItem.titleView = self.searchBar
         
         searchBar.delegate = self
         
-        runOrRerunSearch("restaurant")
+        var swfcfg : SwiftLoader.Config = SwiftLoader.Config()
+        swfcfg.backgroundColor = UIColor.blueColor()
+        swfcfg.spinnerColor = UIColor.whiteColor()
+        SwiftLoader.setConfig(swfcfg)
+        
+        runOrRerunSearch()
         
     }
     
     
     
-    func runOrRerunSearch(term : String) {
+    func runOrRerunSearch() {
         
-        SwiftLoader.show(animated: true)
-
-        Business.searchWithTerm(term, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
-            deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-                println(business.name!)
-                println(business.address!)
+        if (self.boolSearchTermAwaitingProcessing && !self.boolSearchInProgress) {
+            SwiftLoader.show(animated: true)
+            self.boolSearchInProgress = true
+            self.boolSearchTermAwaitingProcessing = false
+            Business.searchWithTerm(self.currentSearchTerm, sort: self.state.sortModes_Ordering[self.state.curSortModeIndex], categories: self.state.getSetOfDesiredCategories(),
+                deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
+                    self.businesses = businesses
+                    self.listingTable.reloadData()
+                    self.boolSearchInProgress = false
+                    SwiftLoader.hide()
+                    if self.boolSearchTermAwaitingProcessing {
+                        // Hey - a change in the current search term came in from the user
+                        // while we were awaiting the completion of this async query.
+                        // It's time to launch another search.
+                        self.runOrRerunSearch()
+                    }
             }
-            
-            self.listingTable.reloadData()
-            SwiftLoader.hide()
         }
-
+        
     }
     
     
@@ -82,13 +100,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchText.isEmpty) {
-            self.currentSearchTerm = "restaurant"
+            self.currentSearchTerm = defaultSearchTerm
         } else {
             self.currentSearchTerm = searchText
         }
-        self.runOrRerunSearch(self.currentSearchTerm)
+        self.boolSearchTermAwaitingProcessing = true
+        self.runOrRerunSearch()
     }
-
+    
     
     
     
@@ -115,12 +134,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navC =  segue.destinationViewController as! UINavigationController
@@ -128,9 +147,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             slaveVC.state.initFromOther(self.state)
             slaveVC.doneHandler = {(newDict: FilterState) -> Void in
                 self.state = newDict
-                self.runOrRerunSearch(self.currentSearchTerm)
+                self.runOrRerunSearch()
             }
         }
     }
-
+    
 }
