@@ -41,19 +41,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func runOrRerunSearch(term : String) {
 
-//        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-//            self.businesses = businesses
-//            
-//            for business in businesses {
-//                println(business.name!)
-//                println(business.address!)
-//            }
-//        })
-        
-
-        // self.state has:  selectionStatus, maxDistance, boolLookOnlyForDeals, 
         Business.searchWithTerm(term, sort: self.state.sortMode, categories: self.state.getSetOfDesiredCategories(),
-            deals: self.state.boolLookOnlyForDeals) { (businesses: [Business]!, error: NSError!) -> Void in
+            deals: self.state.boolLookOnlyForDeals, maxRadius: self.state.maxDistance) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {

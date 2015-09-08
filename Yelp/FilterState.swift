@@ -188,7 +188,7 @@ class FilterState {
     var selectionStatus : [Bool] = []
 
     var maxDistance : Float = 5.0
-    var boolLookOnlyForDeals = true
+    var boolLookOnlyForDeals = false
 
     var sortMode : YelpSortMode = .Distance
     let sortModes_forDisplay = [ "Best match", "Nearest distance", "Highest Rated" ]
@@ -208,13 +208,18 @@ class FilterState {
         }
     }
     
+    
+    // This is needed because Swift does not offer an automatic support for deep copying.
     func initFromOther(other:FilterState) {
         self.selectionStatus = other.selectionStatus
         self.maxDistance = other.maxDistance
         self.boolLookOnlyForDeals = other.boolLookOnlyForDeals
         self.sortMode = other.sortMode
     }
+    
 
+    // The Yelp API wants an array listing just the categories desired, so I need
+    // to map the sparse selectionStatus array-of-bool into that non-sparse format.
     func getSetOfDesiredCategories() -> [String]? {
         var result : [String] = []
         for idx in 0...(selectionStatus.count-1) {
