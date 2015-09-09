@@ -23,7 +23,7 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessCell" rowHeight="105" id="gy6-uI-efH" customClass="BusinessListingCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gy6-uI-efH" id="Jde-cX-LTt">
+                                        <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gy6-uI-efH" id="Jde-cX-LTt">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="524-Ma-O7h">
@@ -40,7 +40,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5 miles, 155 Channel Street" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiY-OE-vM1">
-                                                    <rect key="frame" x="68" y="27" width="302" height="17"/>
+                                                    <rect key="frame" x="68" y="28" width="302" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hC2-gu-FO3" firstAttribute="top" secondItem="524-Ma-O7h" secondAttribute="bottom" constant="2" id="4Dr-dn-NOd"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hC2-gu-FO3" secondAttribute="bottom" constant="5" id="Cr9-os-8Nk"/>
                                                 <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="3" id="H4f-mm-kok"/>
                                                 <constraint firstItem="HiY-OE-vM1" firstAttribute="top" secondItem="GAN-Cb-RTN" secondAttribute="bottom" constant="3" id="POt-14-YRW"/>
                                                 <constraint firstAttribute="trailing" secondItem="GAN-Cb-RTN" secondAttribute="trailing" constant="5" id="Rm8-09-ItI"/>

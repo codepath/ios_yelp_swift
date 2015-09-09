@@ -38,7 +38,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.dataSource = self
         self.listingTable.delegate = self
         
-        self.listingTable.rowHeight = 75
+        self.listingTable.rowHeight = UITableViewAutomaticDimension
+	self.listingTable.estimatedRowHeight = 60
         
         self.navigationItem.titleView = self.searchBar
         
