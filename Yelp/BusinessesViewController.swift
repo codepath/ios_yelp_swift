@@ -39,7 +39,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.delegate = self
         
         self.listingTable.rowHeight = UITableViewAutomaticDimension
-	self.listingTable.estimatedRowHeight = 60
+	self.listingTable.estimatedRowHeight = 66
         
         self.navigationItem.titleView = self.searchBar
         
@@ -77,7 +77,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                     } else {
                         if let listOfResults = self.businesses {
                             self.labelExplainZeroResults.hidden = (listOfResults.count > 0)
-                        }
+                        } else {
+                            self.labelExplainZeroResults.hidden = false
+    		        }
                     }
             }
         }
@@ -137,7 +139,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         cell.NameBusiness.text = details.name
         cell.imageviewBusiness.setImageWithURL(details.imageURL)
         cell.imageviewRating.setImageWithURL(details.ratingImageURL)
-        cell.labelDistanceAddress.text = details.distance! + ", " + details.address!
+        cell.labelDistanceAddress.text = details.address!
+        cell.labelDistance.text = details.distance!
         return cell
     }
     

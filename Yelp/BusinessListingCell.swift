@@ -14,5 +14,6 @@ class BusinessListingCell: UITableViewCell {
     @IBOutlet weak var labelDistanceAddress: UILabel!
     @IBOutlet weak var imageviewBusiness: UIImageView!
     @IBOutlet weak var imageviewRating: UIImageView!    
+    @IBOutlet weak var labelDistance: UILabel!
     
 }

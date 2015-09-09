@@ -27,16 +27,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="524-Ma-O7h">
-                                                    <rect key="frame" x="8" y="3" width="50" height="50"/>
+                                                    <rect key="frame" x="8" y="6" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="SIs-L8-quf"/>
                                                         <constraint firstAttribute="height" constant="50" id="YV5-jM-VMC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RestaurantName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-Cb-RTN">
-                                                    <rect key="frame" x="68" y="5" width="302" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RestaurantName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-Cb-RTN">
+                                                    <rect key="frame" x="68" y="6" width="125" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5 miles, 155 Channel Street" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiY-OE-vM1">
@@ -46,38 +46,47 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hC2-gu-FO3" userLabel="Image-Ratings">
-                                                    <rect key="frame" x="8" y="55" width="50" height="10"/>
+                                                    <rect key="frame" x="8" y="58" width="50" height="10"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="cQi-yM-9kf"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-wm-uzx" userLabel="1.5 miles">
+                                                    <rect key="frame" x="336" y="6" width="33" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Xax-wm-uzx" secondAttribute="trailing" constant="6" id="49Y-3a-Qgr"/>
                                                 <constraint firstItem="hC2-gu-FO3" firstAttribute="top" secondItem="524-Ma-O7h" secondAttribute="bottom" constant="2" id="4Dr-dn-NOd"/>
+                                                <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="GAN-Cb-RTN" secondAttribute="top" id="51o-Dr-yLQ"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hC2-gu-FO3" secondAttribute="bottom" constant="5" id="Cr9-os-8Nk"/>
-                                                <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="3" id="H4f-mm-kok"/>
+                                                <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="6" id="H4f-mm-kok"/>
                                                 <constraint firstItem="HiY-OE-vM1" firstAttribute="top" secondItem="GAN-Cb-RTN" secondAttribute="bottom" constant="3" id="POt-14-YRW"/>
-                                                <constraint firstAttribute="trailing" secondItem="GAN-Cb-RTN" secondAttribute="trailing" constant="5" id="Rm8-09-ItI"/>
+                                                <constraint firstItem="524-Ma-O7h" firstAttribute="top" secondItem="Xax-wm-uzx" secondAttribute="top" id="Tdp-9J-9KB"/>
                                                 <constraint firstAttribute="trailing" secondItem="HiY-OE-vM1" secondAttribute="trailing" constant="5" id="UYc-tO-PXD"/>
                                                 <constraint firstItem="GAN-Cb-RTN" firstAttribute="leading" secondItem="524-Ma-O7h" secondAttribute="trailing" constant="10" id="Wff-OC-E0C"/>
                                                 <constraint firstItem="524-Ma-O7h" firstAttribute="leading" secondItem="Jde-cX-LTt" secondAttribute="leading" constant="8" id="arX-jz-TDy"/>
                                                 <constraint firstItem="hC2-gu-FO3" firstAttribute="leading" secondItem="524-Ma-O7h" secondAttribute="leading" id="dPR-1F-tBv"/>
                                                 <constraint firstItem="HiY-OE-vM1" firstAttribute="leading" secondItem="GAN-Cb-RTN" secondAttribute="leading" id="mre-HF-TcU"/>
-                                                <constraint firstItem="GAN-Cb-RTN" firstAttribute="top" secondItem="Jde-cX-LTt" secondAttribute="top" constant="5" id="oxu-f9-MvS"/>
                                                 <constraint firstItem="hC2-gu-FO3" firstAttribute="trailing" secondItem="524-Ma-O7h" secondAttribute="trailing" id="sk6-Y6-vfo"/>
+                                                <constraint firstItem="Xax-wm-uzx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GAN-Cb-RTN" secondAttribute="trailing" constant="6" id="wvh-MY-1eT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="NameBusiness" destination="GAN-Cb-RTN" id="fbZ-bk-2F1"/>
                                             <outlet property="imageviewBusiness" destination="524-Ma-O7h" id="IKD-ea-nTW"/>
                                             <outlet property="imageviewRating" destination="hC2-gu-FO3" id="2TE-FU-y5v"/>
+                                            <outlet property="labelDistance" destination="Xax-wm-uzx" id="DPd-9t-nvt"/>
                                             <outlet property="labelDistanceAddress" destination="HiY-OE-vM1" id="gt0-KB-E5L"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-nP-57z">
-                                <rect key="frame" x="46" y="85" width="282" height="80"/>
+                                <rect key="frame" x="46" y="65" width="282" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Your current filter and search term returns zero items.  Please revise your search/filter...">
@@ -98,7 +107,7 @@
                             <constraint firstAttribute="trailing" secondItem="Vs2-nP-57z" secondAttribute="trailing" constant="47" id="H8k-EA-7Vy"/>
                             <constraint firstAttribute="trailing" secondItem="0A0-nd-995" secondAttribute="trailing" id="c7s-pU-fET"/>
                             <constraint firstItem="0A0-nd-995" firstAttribute="leading" secondItem="nMh-hO-3jF" secondAttribute="leading" id="lGO-9z-alx"/>
-                            <constraint firstItem="Vs2-nP-57z" firstAttribute="top" secondItem="nMh-hO-3jF" secondAttribute="top" constant="85" id="tDN-hV-UWM"/>
+                            <constraint firstItem="Vs2-nP-57z" firstAttribute="top" secondItem="nMh-hO-3jF" secondAttribute="top" constant="65" id="tDN-hV-UWM"/>
                             <constraint firstItem="Vs2-nP-57z" firstAttribute="leading" secondItem="nMh-hO-3jF" secondAttribute="leading" constant="46" id="zAo-EZ-Baf"/>
                         </constraints>
                     </view>
