@@ -1,34 +1,16 @@
-### Basic Yelp client
+# Yelp Client
 
-This is a headless example of how to implement an OAuth 1.0a Yelp API client. The Yelp API provides an application token that allows applications to make unauthenticated requests to their search API.
+A client allowing searching/filtering Yelp's business listings, with a focus on restaurants.
 
-### Next steps
+Time spent: 26 hours
 
-- Check out `BusinessesViewController.swift` to see how to use the `Business` model.
+Mandatory features completed:
 
-### Sample request
+* YES: All table cells across both screens use auto-layout for all components, and all rows have auto-determined heights.
+* YES: Search bar is in the navigation bar.
+* YES: User sees "loading..." feedback anytime a network wait is ongoing.
 
-**Basic search with query**
+Regarding the filter screen:
+* I found a way to visually compress the list of categories - by avoiding use of the native "fat switch" and instead using the native checkmark-based multiple-selection feature of tables - and as a result, I found that even on small phones, an interface in which the list of categories scrolled "on its own" worked quite well.  I felt this was a nicer interface in that at all times the complete set of filter sections was represented on-screen.
 
-```
-Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-    self.businesses = businesses
-    
-    for business in businesses {
-        println(business.name!)
-        println(business.address!)
-    }
-})
-```
-
-**Advanced search with categories, sort, and deal filters**
-
-```
-Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-
-    for business in businesses {
-        println(business.name!)
-        println(business.address!)
-    }
-}
-```
+![Video Walkthrough](SklarDavid-Tumblr-Yelp.gif)
