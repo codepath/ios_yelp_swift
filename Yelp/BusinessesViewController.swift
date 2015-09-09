@@ -39,7 +39,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.listingTable.delegate = self
         
         self.listingTable.rowHeight = UITableViewAutomaticDimension
-	self.listingTable.estimatedRowHeight = 66
+        self.listingTable.estimatedRowHeight = 66
         
         self.navigationItem.titleView = self.searchBar
         
@@ -79,7 +79,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                             self.labelExplainZeroResults.hidden = (listOfResults.count > 0)
                         } else {
                             self.labelExplainZeroResults.hidden = false
-    		        }
+                        }
                     }
             }
         }
