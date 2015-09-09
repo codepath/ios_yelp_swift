@@ -2,7 +2,7 @@
 
 A client allowing searching/filtering Yelp's business listings, with a focus on restaurants.
 
-Time spent: 26 hours
+Time spent: 18 hours
 
 Mandatory features completed:
 
