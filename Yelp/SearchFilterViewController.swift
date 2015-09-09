@@ -74,7 +74,8 @@ class SearchFilterViewController: UIViewController, UITableViewDelegate, UITable
         
         // Important: I'm taking advantage of native mult-sel support:
         self.tableFoodCategory.allowsMultipleSelection = true
-        self.tableFoodCategory.rowHeight = 30
+        self.tableFoodCategory.rowHeight = UITableViewAutomaticDimension
+        self.tableFoodCategory.estimatedRowHeight = 20
         
         // Init the GUI controls to match the passed-in state
         self.sliderMaxDist.value = self.state.maxDistance

@@ -265,7 +265,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdl-aD-83o">
-                                                            <rect key="frame" x="24" y="1" width="335" height="18"/>
+                                                            <rect key="frame" x="24" y="3" width="335" height="14"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -274,7 +274,8 @@
                                                     <constraints>
                                                         <constraint firstItem="Vdl-aD-83o" firstAttribute="leading" secondItem="jfd-De-lG7" secondAttribute="leading" constant="24" id="96X-vX-cRb"/>
                                                         <constraint firstAttribute="trailing" secondItem="Vdl-aD-83o" secondAttribute="trailing" id="HmC-6m-e8k"/>
-                                                        <constraint firstAttribute="centerY" secondItem="Vdl-aD-83o" secondAttribute="centerY" id="hck-h9-lsE"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Vdl-aD-83o" secondAttribute="bottom" constant="3" id="ZAN-OY-fFe"/>
+                                                        <constraint firstItem="Vdl-aD-83o" firstAttribute="top" secondItem="jfd-De-lG7" secondAttribute="top" constant="3" id="eX7-JX-R8I"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
