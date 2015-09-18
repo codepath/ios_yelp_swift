@@ -28,8 +28,8 @@ class BusinessesViewController: UIViewController {
             self.businesses = businesses
             
             for business in businesses {
-                println(business.name!)
-                println(business.address!)
+                print(business.name!)
+                print(business.address!)
             }
         }
     }

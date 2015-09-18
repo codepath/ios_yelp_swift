@@ -36,7 +36,7 @@ class Business: NSObject {
                 address = addressArray![0] as! String
             }
             
-            var neighborhoods = location!["neighborhoods"] as? NSArray
+            let neighborhoods = location!["neighborhoods"] as? NSArray
             if neighborhoods != nil && neighborhoods!.count > 0 {
                 if !address.isEmpty {
                     address += ", "
@@ -50,10 +50,10 @@ class Business: NSObject {
         if categoriesArray != nil {
             var categoryNames = [String]()
             for category in categoriesArray! {
-                var categoryName = category[0]
+                let categoryName = category[0]
                 categoryNames.append(categoryName)
             }
-            categories = ", ".join(categoryNames)
+            categories = categoryNames.joinWithSeparator(", ")
         } else {
             categories = nil
         }
@@ -76,10 +76,10 @@ class Business: NSObject {
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
-    class func businesses(#array: [NSDictionary]) -> [Business] {
+    class func businesses(array array: [NSDictionary]) -> [Business] {
         var businesses = [Business]()
         for dictionary in array {
-            var business = Business(dictionary: dictionary)
+            let business = Business(dictionary: dictionary)
             businesses.append(business)
         }
         return businesses
