@@ -15,8 +15,8 @@ Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: N
     self.businesses = businesses
     
     for business in businesses {
-        println(business.name!)
-        println(business.address!)
+        print(business.name!)
+        print(business.address!)
     }
 })
 ```
@@ -27,8 +27,8 @@ Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: N
 Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
 
     for business in businesses {
-        println(business.name!)
-        println(business.address!)
+        print(business.name!)
+        print(business.address!)
     }
 }
 ```
