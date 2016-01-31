@@ -14,23 +14,28 @@ class BusinessesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Business.searchWithTermAndLocation("Pizza", location: "Toronto", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        
+       // Example of basic Yelp search
+        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            
+            for business in businesses {
+                print(business.name!)
+                print(business.address!)
+            }
+        })
+        
+/* Example of Yelp search with location specified
+        Business.searchWithTermAndLocation("Thai", location: "Toronto", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
         
             for business in businesses {
                 print(business.name!)
-                //print(business.address!)
-                print(business.ratingImageURL)
-                print(business.reviewCount)
+                print(business.address!)
             }
-            
         })
+*/
         
-        
-     
-
-
 /* Example of Yelp search with more search options specified
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -41,6 +46,7 @@ class BusinessesViewController: UIViewController {
             }
         }
 */
+        
     }
 
     override func didReceiveMemoryWarning() {

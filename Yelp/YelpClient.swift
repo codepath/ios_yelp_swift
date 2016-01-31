@@ -52,10 +52,14 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     }
     
     func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil,  location: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTermAndLocation(term: String, location: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, location: location, completion: completion)
+    }
+    
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, location: String?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         // Default the location to San Francisco
@@ -73,8 +77,10 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             parameters["deals_filter"] = deals!
         }
         
-        print(parameters)
-        
+        if location != nil{
+            parameters["location"] = location
+            parameters["ll"] = nil
+        }
         return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let dictionaries = response["businesses"] as? [NSDictionary]
             if dictionaries != nil {
@@ -85,25 +91,4 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         })!
     }
     
-    func searchWithTermAndLocation(term: String, location: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
-        
-        // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term]
-                
-        //change ll to location (ll return nil)
-        parameters["location"] = location;
-
-        
-        print(parameters)
-        
-        return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            let dictionaries = response["businesses"] as? [NSDictionary]
-            if dictionaries != nil {
-                completion(Business.businesses(array: dictionaries!), nil)
-            }
-            }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
-                completion(nil, error)
-        })!
-    }
 }
