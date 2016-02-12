@@ -35,6 +35,16 @@ class BusinessCell: UITableViewCell {
         super.awakeFromNib()
         thumbnailImageView.layer.cornerRadius = 4
         thumbnailImageView.clipsToBounds = true
+        
+        // HACK?
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+                
+        // HACK?
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
 
 
