@@ -38,7 +38,8 @@ This is a personal todo list as I step through the assignment.
 - [x] Project setup: fork repo and build headless client
 - [x] Add tableView with basic prototype cells
 - [x] Use AutoLayout to configure custom cells
-- [ ] Add Search Bar in the navigation bar
+- [x] Add Search Bar in the navigation bar
+- [ ] Add Settings ViewController
 
 <!---
 ***
