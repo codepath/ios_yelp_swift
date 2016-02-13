@@ -8,10 +8,10 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] Search results page
-   - [ ] Table rows should be dynamic height according to the content height.
-   - [ ] Custom cells should have the proper Auto Layout constraints.
-   - [ ] Search bar should be in the navigation bar (doesn't have to expand to show location like the real Yelp app does).
+- [x] Search results page
+   - [x] Table rows should be dynamic height according to the content height.
+   - [x] Custom cells should have the proper Auto Layout constraints.
+   - [x] Search bar should be in the navigation bar (doesn't have to expand to show location like the real Yelp app does).
 - [ ] Filter page. Unfortunately, not all the filters are supported in the Yelp API.
    - [ ] The filters you should actually have are: category, sort (best match, distance, highest rated), distance, deals (on/off).
    - [ ] The filters table should be organized into sections as in the mock.
@@ -39,7 +39,13 @@ This is a personal todo list as I step through the assignment.
 - [x] Add tableView with basic prototype cells
 - [x] Use AutoLayout to configure custom cells
 - [x] Add Search Bar in the navigation bar
-- [ ] Add Settings ViewController
+- [ ] Add Settings ViewController (using TableViewController and static cells)
+  - [x] Embed Settings ViewController in NavigationController
+  - [x] layout static cells
+  - [x] disable cell selection
+  - [ ] configure IBOutlets back to FiltersTableViewController
+  - [ ] table section insets
+- [ ] Add FilterSettings class
 
 <!---
 ***
@@ -67,6 +73,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+1. Getting cells to line up properly with Auto Layout was not easy.
 
 ## License
 

@@ -17,6 +17,9 @@ class BusinessesViewController: UIViewController {
     var searchBar: UISearchBar!
     var businesses: [Business]!
     
+    
+    // MARK: - Lifecycle functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +66,9 @@ class BusinessesViewController: UIViewController {
     }
     */
     
+    
+    // MARK: - API access
+    
     private func searchBusinesses() {
         Business.searchWithTerm(searchString!, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -78,7 +84,9 @@ class BusinessesViewController: UIViewController {
 
 }
 
-// UITableViewDataSource
+
+// MARK: - UITableViewDataSource
+
 extension BusinessesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,9 +106,15 @@ extension BusinessesViewController: UITableViewDataSource {
     }
 }
 
+
+// MARK: - UITableViewDelegate
+
 extension BusinessesViewController: UITableViewDelegate {
     
 }
+
+
+// MARK: - UISearchBarDelegate
 
 extension BusinessesViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
