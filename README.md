@@ -39,13 +39,20 @@ This is a personal todo list as I step through the assignment.
 - [x] Add tableView with basic prototype cells
 - [x] Use AutoLayout to configure custom cells
 - [x] Add Search Bar in the navigation bar
-- [ ] Add Settings ViewController (using TableViewController and static cells)
+- [x] Add Settings ViewController (using TableViewController and static cells)
   - [x] Embed Settings ViewController in NavigationController
   - [x] layout static cells
   - [x] disable cell selection
-  - [ ] configure IBOutlets back to FiltersTableViewController
-  - [ ] table section insets
-- [ ] Add FilterSettings class
+  - [x] configure IBOutlets back to UISwitch in FiltersTableViewController
+  - [x] configure UITableCell selection in FiltersTableViewController delegate
+- [x] Add FilterSettings class
+- [ ] configure Distance cell selection in FiltersTableViewController
+- [ ] Search bar enhancements
+  - [ ] Hint text in empty search field
+  - [ ] Allow empty search (search button disabled on keyboard)
+  - [ ] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
+- [ ] HUD for any asynchronous network calls
+- [ ] Review Assignment #1 feedback
 
 <!---
 ***
@@ -75,6 +82,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Describe any challenges encountered while building the app.
 
 1. Getting cells to line up properly with Auto Layout was not easy.
+2. Wasn't sure if I should use a `class` or a `struct` for the `FilterSettings` model
 
 ## License
 

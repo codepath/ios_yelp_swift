@@ -12,8 +12,7 @@ class BusinessesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    // TODO: replace with BusinessSearchSettings
-    var searchString: String?
+    var searchFilterSettings = BusinessSearchFilterSettings()
     var searchBar: UISearchBar!
     var businesses: [Business]!
     
@@ -35,20 +34,10 @@ class BusinessesViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        // BusinessSearchSettings
-        searchString = "Thai"
+        // BusinessSearchFilterSettings
+        searchFilterSettings.searchTerm = "Restaurants"
+        searchFilterSettings.categories = ["soulfood"]
         searchBusinesses()
-
-/* Example of Yelp search with more search options specified
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        }
-*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,29 +45,46 @@ class BusinessesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let navController = segue.destinationViewController as! UINavigationController
+        let filtersController = navController.topViewController as! FiltersTableViewController
+        filtersController.filterSettings = self.searchFilterSettings
     }
-    */
     
+    @IBAction func unwindToBusinessListViaCancel(sender: UIStoryboardSegue) {
+        let sourceVC = sender.sourceViewController
+        sourceVC.dismissViewControllerAnimated(true, completion: nil)
+    }
     
+    @IBAction func unwindToBusinessListViaSearch(sender: UIStoryboardSegue) {
+        let sourceVC = sender.sourceViewController as! FiltersTableViewController
+        searchFilterSettings = sourceVC.filterSettingsFromTableData()
+        sourceVC.dismissViewControllerAnimated(true, completion: nil)
+        searchBusinesses()
+    }
+    
+
     // MARK: - API access
     
     private func searchBusinesses() {
-        Business.searchWithTerm(searchString!, completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
+        searchFilterSettings.searchTerm = searchBar.text
+        let settings = searchFilterSettings
+        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses            
             self.tableView.reloadData()
-            
+
+            /*
             for business in businesses {
                 print(business.name!)
                 print(business.address!)
             }
+            */
         })
     }
 
@@ -133,7 +139,6 @@ extension BusinessesViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchString = searchBar.text
         searchBusinesses()
         searchBar.resignFirstResponder()
     }

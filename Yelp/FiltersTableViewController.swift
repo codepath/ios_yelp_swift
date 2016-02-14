@@ -10,16 +10,69 @@ import UIKit
 
 class FiltersTableViewController: UITableViewController {
 
+    // Table section indices
+    static let SECTION_INDEX_DEALS     = 0
+    static let SECTION_INDEX_DISTANCE  = 1
+    static let SECTION_INDEX_SORT_MODE = 2
+    static let SECTION_INDEX_CATEGORY  = 3
     
-    // MARK: - Actions
+    // deals
+    @IBOutlet weak var dealsSwitch: UISwitch!
     
-    @IBAction func onCancelButtonTapped(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    // categories
+    @IBOutlet weak var chineseSwitch: UISwitch!
+    @IBOutlet weak var mexicanSwitch: UISwitch!
+    @IBOutlet weak var thaiSwitch: UISwitch!
+    
+    var filterSettings: BusinessSearchFilterSettings!
+    var sortModeSelectedIndex = 0
+
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        filterSettings = filterSettings ?? BusinessSearchFilterSettings()
+        configureFiltersDisplay()
     }
     
     
-    @IBAction func onSearchButtonTapped(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    // MARK: - Helper functions
+    
+    private func configureFiltersDisplay() {
+        dealsSwitch.on = filterSettings.deals
+
+        sortModeSelectedIndex = filterSettings.sort!.rawValue
+        
+        chineseSwitch.on = filterSettings.categories?.contains("chinese") ?? false
+        mexicanSwitch.on = filterSettings.categories?.contains("mexican") ?? false
+        thaiSwitch.on = filterSettings.categories?.contains("thai") ?? false
+    }
+    
+    func filterSettingsFromTableData() -> BusinessSearchFilterSettings {
+        let filterSettings = BusinessSearchFilterSettings()
+        filterSettings.deals = dealsSwitch.on
+        filterSettings.sort = YelpSortMode(rawValue: sortModeSelectedIndex)
+        filterSettings.categories = categoriesFromSwitches()
+        
+        return filterSettings
+    }
+    
+    private func categoriesFromSwitches() -> [String] {
+        var categories = [String]()
+        
+        // iterate categories mapping switch states to category codes
+        if chineseSwitch.on {
+            categories.append("chinese")
+        }
+        if mexicanSwitch.on {
+            categories.append("mexican")
+        }
+        if thaiSwitch.on {
+            categories.append("thai")
+        }
+        
+        return categories
     }
     
 
@@ -27,6 +80,29 @@ class FiltersTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section == FiltersTableViewController.SECTION_INDEX_SORT_MODE {
+            sortModeSelectedIndex = indexPath.row
+            tableView.reloadData()
+        }
+    }
+    
+    
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        
+        if indexPath.section == FiltersTableViewController.SECTION_INDEX_DISTANCE {
+            // TODO: which should be selected - set up DISTANCE enum?
+            cell.accessoryType = (indexPath.row == 0) ? .Checkmark : .None
+        }
+        
+        if indexPath.section == FiltersTableViewController.SECTION_INDEX_SORT_MODE {
+            cell.accessoryType = (indexPath.row == sortModeSelectedIndex) ? .Checkmark : .None
+        }
+        
+        return cell
     }
     
     
