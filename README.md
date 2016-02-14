@@ -48,12 +48,18 @@ This is a personal todo list as I step through the assignment.
 - [x] Add FilterSettings class
 - [x] Add API support for distance (`radius_filter`)
 - [x] configure Distance cell selection in FiltersTableViewController
-- [ ] Search bar enhancements
-  - [ ] Hint text in empty search field
-  - [ ] Allow empty search (search button disabled on keyboard)
-  - [ ] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
+---
+- [x] Search bar enhancements
+  - [x] Hint text in empty search field
+  - [x] Allow empty search (search button disabled on keyboard)
+  - [x] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
+- [ ] Search results list enhancements
+  - [ ] scroll table back to top after search
+  - [ ] no results view
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
+---
+- [ ] LiceCap of required stories
 
 <!---
 ***

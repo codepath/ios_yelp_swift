@@ -23,10 +23,7 @@ class BusinessesViewController: UIViewController {
         super.viewDidLoad()
         
         // UISearchBar
-        searchBar = UISearchBar()
-        searchBar.delegate = self
-        searchBar.sizeToFit()
-        navigationItem.titleView = searchBar
+        configureSearchBar()
 
         // UITableView
         tableView.delegate = self
@@ -35,14 +32,23 @@ class BusinessesViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         
         // BusinessSearchFilterSettings
-        searchFilterSettings.searchTerm = "Restaurants"
-        searchFilterSettings.categories = ["soulfood"]
+        searchBar.text = "Restaurants"
         searchBusinesses()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func configureSearchBar() {
+        searchBar = UISearchBar()
+        searchBar.placeholder = "e.g. Chicken and Waffles"
+        searchBar.autocorrectionType = .Default
+        searchBar.enablesReturnKeyAutomatically = false
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
     }
 
 
