@@ -2,7 +2,7 @@
 
 **YelpLayout** is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
@@ -30,6 +30,7 @@ The following **optional** features are implemented:
    - [ ] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
 - [ ] Implement the restaurant detail page.
 
+<!---
 ## TODO
 
 **DELETE** this section before submitting for review.
@@ -59,9 +60,8 @@ This is a personal todo list as I step through the assignment.
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
 ---
-- [ ] LiceCap of required stories
+- [x] LiceCap of required stories
 
-<!---
 ***
 
 The following **additional** features are implemented:
@@ -72,17 +72,17 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 1.
 2.
+--->
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Video Walkthrough](YelpRequired.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ***
---->
 
 ## Notes
 
