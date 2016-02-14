@@ -81,16 +81,14 @@ class BusinessesViewController: UIViewController {
     // MARK: - API access
     
     private func searchBusinesses() {
-        searchFilterSettings.searchTerm = searchBar.text
         let settings = searchFilterSettings
-        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, distance: settings.distance, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(searchBar.text!, settings: settings, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses            
             self.tableView.reloadData()
         })
     }
     
     private func loadAdditionalBusinesses() {
-        searchFilterSettings.searchTerm = searchBar.text
         let settings = searchFilterSettings
 
         let limit  = 10
@@ -100,7 +98,7 @@ class BusinessesViewController: UIViewController {
         hud.mode = .Indeterminate
         hud.labelText = "Loading..."
 
-        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, distance: settings.distance, limit: limit, offset: offset, completion: { (addlBusinesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(searchBar.text!, settings: settings, limit: limit, offset: offset, completion: { (addlBusinesses: [Business]!, error: NSError!) -> Void in
             self.businesses.appendContentsOf(addlBusinesses)
 
             // all finished
@@ -148,6 +146,7 @@ extension BusinessesViewController: UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 
 extension BusinessesViewController: UISearchBarDelegate {
+    
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(true, animated: true)
         return true
@@ -173,6 +172,7 @@ extension BusinessesViewController: UISearchBarDelegate {
 // MARK: - UISearchBarDelegate
 
 extension BusinessesViewController: UIScrollViewDelegate {
+
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if !loadingAdditionalData {
             

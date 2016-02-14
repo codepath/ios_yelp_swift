@@ -2,7 +2,7 @@
 
 **YelpLayout** is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: **8** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -54,14 +54,14 @@ This is a personal todo list as I step through the assignment.
   - [x] Hint text in empty search field
   - [x] Allow empty search (search button disabled on keyboard)
   - [x] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
-- [ ] Refactor to include `Business.searchWithFilterSettings()`
+- [x] Refactor to include `Business.searchWithFilterSettings()`
 - [x] Infinite scroll for restaurant results
   - [x] implement `UIScrollViewDelegate` and loadingAdditonal state
   - [x] API call for additional results
   - [x] Display and dismiss activity indicator
   - [x] Add MBProgressHUD pod
 - [ ] Search results page
-  - [ ] no results view
+  - [ ] no results view (set `tableView.backgroundView` and `hidden`?)
   - [ ] scroll table back to top after search
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
@@ -95,6 +95,7 @@ Describe any challenges encountered while building the app.
 
 1. Getting cells to line up properly with Auto Layout was not easy.
 2. Wasn't sure if I should use a `class` or a `struct` for the `FilterSettings` model
+3. Was getting a very occasional crash with business having `imageURL = nil` (intermittent crashes are the worst) - Is it worth adding Crashlytics or some crash reporting library to help with this?
 
 ## License
 
