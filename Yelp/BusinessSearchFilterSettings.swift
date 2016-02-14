@@ -13,12 +13,14 @@ import Foundation
 
 class BusinessSearchFilterSettings {
     var searchTerm: String?
+    var distance: YelpDistanceFilter?
     var sort: YelpSortMode?
     var categories: [String]?
     var deals: Bool = false
     
     init() {
         searchTerm = String()
+        distance = .Auto
         sort = .BestMatched
     }
 }

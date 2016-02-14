@@ -25,6 +25,7 @@ class FiltersTableViewController: UITableViewController {
     @IBOutlet weak var thaiSwitch: UISwitch!
     
     var filterSettings: BusinessSearchFilterSettings!
+    var distanceSelectedIndex = 0
     var sortModeSelectedIndex = 0
 
     
@@ -42,6 +43,7 @@ class FiltersTableViewController: UITableViewController {
     private func configureFiltersDisplay() {
         dealsSwitch.on = filterSettings.deals
 
+        distanceSelectedIndex = filterSettings.distance!.rawValue
         sortModeSelectedIndex = filterSettings.sort!.rawValue
         
         chineseSwitch.on = filterSettings.categories?.contains("chinese") ?? false
@@ -52,6 +54,7 @@ class FiltersTableViewController: UITableViewController {
     func filterSettingsFromTableData() -> BusinessSearchFilterSettings {
         let filterSettings = BusinessSearchFilterSettings()
         filterSettings.deals = dealsSwitch.on
+        filterSettings.distance = YelpDistanceFilter(rawValue: distanceSelectedIndex)
         filterSettings.sort = YelpSortMode(rawValue: sortModeSelectedIndex)
         filterSettings.categories = categoriesFromSwitches()
         
@@ -81,6 +84,11 @@ class FiltersTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        if indexPath.section == FiltersTableViewController.SECTION_INDEX_DISTANCE {
+            distanceSelectedIndex = indexPath.row
+            tableView.reloadData()
+        }
+        
         if indexPath.section == FiltersTableViewController.SECTION_INDEX_SORT_MODE {
             sortModeSelectedIndex = indexPath.row
             tableView.reloadData()
@@ -94,8 +102,7 @@ class FiltersTableViewController: UITableViewController {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         
         if indexPath.section == FiltersTableViewController.SECTION_INDEX_DISTANCE {
-            // TODO: which should be selected - set up DISTANCE enum?
-            cell.accessoryType = (indexPath.row == 0) ? .Checkmark : .None
+            cell.accessoryType = (indexPath.row == distanceSelectedIndex) ? .Checkmark : .None
         }
         
         if indexPath.section == FiltersTableViewController.SECTION_INDEX_SORT_MODE {

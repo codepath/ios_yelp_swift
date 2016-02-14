@@ -21,10 +21,22 @@ enum YelpSortMode: Int {
     case BestMatched = 0, Distance, HighestRated
 }
 
+enum YelpDistanceFilter: Int {
+    case Auto = 0, HalfMile, OneMile, FiveMiles, TwentyMiles
+}
+
 class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
     
+    let distances: [YelpDistanceFilter : Int?] = [
+        YelpDistanceFilter.Auto : nil,
+        YelpDistanceFilter.HalfMile : 800,
+        YelpDistanceFilter.OneMile : 1600,
+        YelpDistanceFilter.FiveMiles : 8000,
+        YelpDistanceFilter.TwentyMiles : 32000
+    ]
+
     class var sharedInstance : YelpClient {
         struct Static {
             static var token : dispatch_once_t = 0
@@ -52,10 +64,14 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     }
     
     func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, distance: nil, completion: completion)
     }
     
     func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+        return searchWithTerm(term, sort: sort, categories: categories, deals: deals, distance: nil, completion: completion)
+    }
+    
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, distance: YelpDistanceFilter?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
 
         // Default the location to San Francisco
@@ -71,6 +87,12 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         
         if deals != nil {
             parameters["deals_filter"] = deals!
+        }
+        
+        if distance != nil {
+            if let distanceInMeters = distances[distance!] {
+                parameters["radius_filter"] = distanceInMeters
+            }
         }
         
         print(parameters)

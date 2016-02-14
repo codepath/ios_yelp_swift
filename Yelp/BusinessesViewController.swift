@@ -75,7 +75,7 @@ class BusinessesViewController: UIViewController {
     private func searchBusinesses() {
         searchFilterSettings.searchTerm = searchBar.text
         let settings = searchFilterSettings
-        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, distance: settings.distance, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses            
             self.tableView.reloadData()
 
