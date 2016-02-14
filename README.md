@@ -22,7 +22,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [ ] Search results page
-   - [ ] Infinite scroll for restaurant results.
+   - [x] Infinite scroll for restaurant results.
    - [ ] Implement map view of restaurant results.
 - [ ] Filter page
    - [ ] Implement a custom switch instead of the default UISwitch.
@@ -54,13 +54,18 @@ This is a personal todo list as I step through the assignment.
   - [x] Hint text in empty search field
   - [x] Allow empty search (search button disabled on keyboard)
   - [x] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
-- [ ] Search results list enhancements
-  - [ ] scroll table back to top after search
+- [ ] Refactor to include `Business.searchWithFilterSettings()`
+- [x] Infinite scroll for restaurant results
+  - [x] implement `UIScrollViewDelegate` and loadingAdditonal state
+  - [x] API call for additional results
+  - [x] Display and dismiss activity indicator
+  - [x] Add MBProgressHUD pod
+- [ ] Search results page
   - [ ] no results view
+  - [ ] scroll table back to top after search
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
----
-- [x] LiceCap of required stories
+- [ ] Occasional crash on business with null imageURL
 
 ***
 
@@ -72,7 +77,6 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 1.
 2.
---->
 
 ## Video Walkthrough
 
@@ -81,6 +85,7 @@ Here's a walkthrough of implemented user stories:
 ![Video Walkthrough](YelpRequired.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
+--->
 
 ***
 

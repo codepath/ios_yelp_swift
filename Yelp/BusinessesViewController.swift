@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class BusinessesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    var loadingAdditionalData = false
     
     var searchFilterSettings = BusinessSearchFilterSettings()
     var searchBar: UISearchBar!
@@ -84,14 +86,31 @@ class BusinessesViewController: UIViewController {
         Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, distance: settings.distance, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses            
             self.tableView.reloadData()
-
-            /*
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-            */
         })
+    }
+    
+    private func loadAdditionalBusinesses() {
+        searchFilterSettings.searchTerm = searchBar.text
+        let settings = searchFilterSettings
+
+        let limit  = 10
+        let offset = businesses.count
+        
+        let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hud.mode = .Indeterminate
+        hud.labelText = "Loading..."
+
+        Business.searchWithTerm(settings.searchTerm!, sort: settings.sort, categories: settings.categories, deals: settings.deals, distance: settings.distance, limit: limit, offset: offset, completion: { (addlBusinesses: [Business]!, error: NSError!) -> Void in
+            self.businesses.appendContentsOf(addlBusinesses)
+
+            // all finished
+            self.loadingAdditionalData = false
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            
+            self.tableView.reloadData()
+        })
+        
+        
     }
 
 }
@@ -150,6 +169,25 @@ extension BusinessesViewController: UISearchBarDelegate {
     }
 }
 
+
+// MARK: - UISearchBarDelegate
+
+extension BusinessesViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if !loadingAdditionalData {
+            
+            // determine (dynamic) height of tableView and threshold for add'l data
+            let scrollViewContentHeight = tableView.contentSize.height
+            let dataRequestThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            if scrollView.contentOffset.y > dataRequestThreshold && (tableView.dragging) {
+                
+                loadingAdditionalData = true
+                loadAdditionalBusinesses()
+            }
+        }
+    }
+}
 
 
 
