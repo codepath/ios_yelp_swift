@@ -66,5 +66,12 @@ extension BusinessesMapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         updateMapRegionToIncludePins()
     }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        let latitude = view.annotation?.coordinate.latitude
+        let longitude = view.annotation?.coordinate.longitude
+        let appleMapsURL = "http://maps.apple.com/?q=\(latitude!),\(longitude!)"
+        UIApplication.sharedApplication().openURL(NSURL(string: appleMapsURL)!)
+    }
 
 }

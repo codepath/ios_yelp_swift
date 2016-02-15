@@ -77,7 +77,8 @@ This is a personal todo list as I step through the assignment.
 
 The following **additional** features are implemented:
 
-- [ ] Minor search bar enhancements (hint text in empty search field, `autocorrectionType`, allow empty search)
+- [x] Minor search bar enhancements (hint text in empty search field, `autocorrectionType`, allow empty search)
+- [x] call `openURL()` to open Apple Maps from map view
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
