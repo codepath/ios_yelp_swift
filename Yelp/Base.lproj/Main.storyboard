@@ -5,6 +5,100 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
+        <!--Business Detail View Controller-->
+        <scene sceneID="QLx-lp-E2h">
+            <objects>
+                <viewController id="uXw-4R-VlO" customClass="BusinessDetailViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bxl-v9-GAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="e4x-C0-1Zj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mc1-XW-d9u">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Etp-UA-0zP">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8T1-Vx-QbT" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMO-GB-guo" userLabel="Top Details View">
+                                                <rect key="frame" x="8" y="8" width="584" height="82"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIj-Qf-sMb">
+                                                        <rect key="frame" x="8" y="8" width="568" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-fo-Ihe" userLabel="Review Count Label">
+                                                        <rect key="frame" x="8" y="41" width="568" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="KIj-Qf-sMb" firstAttribute="top" secondItem="aMO-GB-guo" secondAttribute="top" constant="8" id="IcE-WV-44H"/>
+                                                    <constraint firstItem="j4k-fo-Ihe" firstAttribute="leading" secondItem="aMO-GB-guo" secondAttribute="leading" constant="8" id="Qoq-ed-Gsd"/>
+                                                    <constraint firstItem="j4k-fo-Ihe" firstAttribute="top" secondItem="KIj-Qf-sMb" secondAttribute="bottom" constant="12" id="ZXR-IM-aLD"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KIj-Qf-sMb" secondAttribute="trailing" constant="8" id="cIH-OH-Oy2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="j4k-fo-Ihe" secondAttribute="trailing" constant="8" id="d3m-zg-Mrs"/>
+                                                    <constraint firstItem="KIj-Qf-sMb" firstAttribute="leading" secondItem="aMO-GB-guo" secondAttribute="leading" constant="8" id="tlT-lN-HdS"/>
+                                                </constraints>
+                                            </view>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RIv-Iw-NBj">
+                                                <rect key="frame" x="8" y="28" width="584" height="84"/>
+                                            </mapView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-pY-QVj">
+                                                <rect key="frame" x="8" y="350" width="584" height="88"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="RIv-Iw-NBj" firstAttribute="top" secondItem="aMO-GB-guo" secondAttribute="bottom" constant="80" id="Lvd-GB-Xhs"/>
+                                            <constraint firstItem="aMO-GB-guo" firstAttribute="leading" secondItem="8T1-Vx-QbT" secondAttribute="leading" constant="8" id="NOb-Jk-k0p"/>
+                                            <constraint firstAttribute="trailing" secondItem="gtx-pY-QVj" secondAttribute="trailing" constant="8" id="Par-9E-YkU"/>
+                                            <constraint firstAttribute="trailing" secondItem="RIv-Iw-NBj" secondAttribute="trailing" constant="8" id="QQn-hm-qnc"/>
+                                            <constraint firstItem="RIv-Iw-NBj" firstAttribute="leading" secondItem="8T1-Vx-QbT" secondAttribute="leading" constant="8" id="Re6-Fa-dX1"/>
+                                            <constraint firstItem="gtx-pY-QVj" firstAttribute="top" secondItem="8T1-Vx-QbT" secondAttribute="top" constant="350" id="U1v-4X-8sl"/>
+                                            <constraint firstItem="gtx-pY-QVj" firstAttribute="leading" secondItem="8T1-Vx-QbT" secondAttribute="leading" constant="8" id="hcN-8u-hFY"/>
+                                            <constraint firstItem="aMO-GB-guo" firstAttribute="top" secondItem="8T1-Vx-QbT" secondAttribute="top" constant="8" id="pA8-Vg-iFf"/>
+                                            <constraint firstAttribute="trailing" secondItem="aMO-GB-guo" secondAttribute="trailing" constant="8" id="v8N-br-gQY"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8T1-Vx-QbT" firstAttribute="top" secondItem="Etp-UA-0zP" secondAttribute="top" id="9PH-Vk-27V"/>
+                                    <constraint firstItem="8T1-Vx-QbT" firstAttribute="leading" secondItem="Etp-UA-0zP" secondAttribute="leading" id="ae3-N9-GKP"/>
+                                    <constraint firstAttribute="trailing" secondItem="8T1-Vx-QbT" secondAttribute="trailing" id="cha-DT-Qan"/>
+                                    <constraint firstAttribute="bottom" secondItem="8T1-Vx-QbT" secondAttribute="bottom" id="vRL-Ay-jZb"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e4x-C0-1Zj" firstAttribute="top" secondItem="Etp-UA-0zP" secondAttribute="bottom" id="azc-AT-K12"/>
+                            <constraint firstAttribute="trailing" secondItem="Etp-UA-0zP" secondAttribute="trailing" id="d2j-NN-dcv"/>
+                            <constraint firstItem="8T1-Vx-QbT" firstAttribute="width" secondItem="Mc1-XW-d9u" secondAttribute="width" id="dWM-a1-Qt6"/>
+                            <constraint firstItem="Etp-UA-0zP" firstAttribute="leading" secondItem="Mc1-XW-d9u" secondAttribute="leading" id="vcX-iM-wmF"/>
+                            <constraint firstItem="Etp-UA-0zP" firstAttribute="top" secondItem="Bxl-v9-GAp" secondAttribute="bottom" id="yrP-lX-Ca0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="businessImageView" destination="gtx-pY-QVj" id="nSt-lo-f2Y"/>
+                        <outlet property="businessNameLabel" destination="KIj-Qf-sMb" id="YzK-ZM-Arv"/>
+                        <outlet property="contentView" destination="8T1-Vx-QbT" id="mdL-yg-Tb5"/>
+                        <outlet property="mapView" destination="RIv-Iw-NBj" id="AB8-Bj-fhK"/>
+                        <outlet property="reviewCountLabel" destination="j4k-fo-Ihe" id="QIX-mV-SSn"/>
+                        <outlet property="scrollView" destination="Etp-UA-0zP" id="geB-Vf-Mm3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Odc-FS-pIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2472" y="-321"/>
+        </scene>
         <!--Yelp-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
@@ -111,6 +205,7 @@
                                             <outlet property="ratingImageView" destination="Fy9-ok-J7p" id="1Q1-kx-tNk"/>
                                             <outlet property="reviewCountLabel" destination="YS1-P7-GoN" id="gUm-X1-RwX"/>
                                             <outlet property="thumbnailImageView" destination="IST-8q-k2g" id="lLy-na-MUu"/>
+                                            <segue destination="uXw-4R-VlO" kind="show" identifier="detailsSegue" id="fUV-Uz-atQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

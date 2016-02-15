@@ -72,6 +72,12 @@ class BusinessesViewController: UIViewController {
             let mapController = navController.topViewController as! BusinessesMapViewController
             mapController.businesses = businesses
         }
+        
+        if segue.identifier == "detailsSegue" {
+            let cell = sender as! BusinessCell
+            let detailsController = segue.destinationViewController as! BusinessDetailViewController
+            detailsController.business = cell.business
+        }
     }
     
     @IBAction func unwindToBusinessListViaCancel(sender: UIStoryboardSegue) {

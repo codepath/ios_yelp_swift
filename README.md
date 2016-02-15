@@ -2,7 +2,7 @@
 
 **YelpLayout** is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: **12** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
@@ -28,7 +28,7 @@ The following **optional** features are implemented:
    - [ ] Implement a custom switch instead of the default UISwitch.
    - [ ] Distance filter should expand as in the real Yelp app
    - [ ] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
-- [ ] Implement the restaurant detail page.
+- [/] Implement the restaurant detail page - _Attempted, but really ugly_
 
 <!---
 ## TODO
@@ -51,7 +51,7 @@ This is a personal todo list as I step through the assignment.
 - [x] configure Distance cell selection in FiltersTableViewController
 ---
 - [x] Infinite scroll for restaurant results
-  - [x] implement `UIScrollViewDelegate` and loadingAdditonal state
+  - [x] implement `UIScrollViewDelegate` and loadingAdditional state
   - [x] API call for additional results
   - [x] Display and dismiss activity indicator
   - [x] Add MBProgressHUD pod
@@ -71,26 +71,26 @@ This is a personal todo list as I step through the assignment.
   - [ ] scroll table back to top after search
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
+--->
 
 ***
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] Minor search bar enhancements (hint text in empty search field, `autocorrectionType`, allow empty search)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. The "actual" Yelp app business detail page has a cool effect on downward scroll in which it reveals a photo viewer with a sort of "elastic" effect. I'm not sure how that was done. Any ideas?
+3. My infinite scrolling implementation requires managing state (via a `loadingAdditonalData` boolean). Thinking there might be a better way (something that doesn't require me to remember when to toggle that flag and when to dismiss the HUD)
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](YelpRequired.gif)
+![Video Walkthrough](YelpFinal.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
---->
 
 ***
 
@@ -100,7 +100,9 @@ Describe any challenges encountered while building the app.
 
 1. Getting cells to line up properly with Auto Layout was not easy.
 2. Wasn't sure if I should use a `class` or a `struct` for the `FilterSettings` model
-3. Was getting a very occasional crash with business having `imageURL = nil` (intermittent crashes are the worst) - Is it worth adding Crashlytics or some crash reporting library to help with this?
+3. Not sure if I used unwind segues correctly (or if I like using them). Would like to know how people handled that programmatically (instead of via IB magic)
+4. Was getting a very occasional crash with business having `imageURL = nil` (intermittent crashes are the worst) - Is it worth adding Crashlytics or some crash reporting library to help with this?
+5. I'm curious how other people handled the separation of data from UI in the settings screen.
 
 ## License
 

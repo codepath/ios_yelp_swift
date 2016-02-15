@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F26F04C1C713AAE0012A056 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F26F04B1C713AAE0012A056 /* MapKit.framework */; };
 		1F26F04E1C713C840012A056 /* BusinessesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26F04D1C713C840012A056 /* BusinessesMapViewController.swift */; };
+		1F26F0501C71928B0012A056 /* BusinessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26F04F1C71928B0012A056 /* BusinessDetailViewController.swift */; };
 		1F368DDF1C6DB8D000D6AC17 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F368DDE1C6DB8D000D6AC17 /* BusinessCell.swift */; };
 		1FBFC6C11C6EFC9E00F83E8A /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBFC6C01C6EFC9E00F83E8A /* FiltersTableViewController.swift */; };
 		1FC517D61C6FFF66009273BE /* BusinessSearchFilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC517D51C6FFF66009273BE /* BusinessSearchFilterSettings.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		1F26F04B1C713AAE0012A056 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1F26F04D1C713C840012A056 /* BusinessesMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesMapViewController.swift; sourceTree = "<group>"; };
+		1F26F04F1C71928B0012A056 /* BusinessDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailViewController.swift; sourceTree = "<group>"; };
 		1F368DDE1C6DB8D000D6AC17 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		1FBFC6C01C6EFC9E00F83E8A /* FiltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
 		1FC517D51C6FFF66009273BE /* BusinessSearchFilterSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSearchFilterSettings.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */,
 				1FBFC6C01C6EFC9E00F83E8A /* FiltersTableViewController.swift */,
 				1F26F04D1C713C840012A056 /* BusinessesMapViewController.swift */,
+				1F26F04F1C71928B0012A056 /* BusinessDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F26F0501C71928B0012A056 /* BusinessDetailViewController.swift in Sources */,
 				1FBFC6C11C6EFC9E00F83E8A /* FiltersTableViewController.swift in Sources */,
 				1F368DDF1C6DB8D000D6AC17 /* BusinessCell.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
