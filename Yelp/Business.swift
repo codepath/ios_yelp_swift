@@ -11,6 +11,8 @@ import UIKit
 class Business: NSObject {
     let name: String?
     let address: String?
+    let latitude: NSNumber?
+    let longitude: NSNumber?
     let imageURL: NSURL?
     let categories: String?
     let distance: String?
@@ -71,6 +73,9 @@ class Business: NSObject {
         } else {
             ratingImageURL = nil
         }
+        
+        latitude = location?["coordinate"]?["latitude"] as? NSNumber
+        longitude = location?["coordinate"]?["longitude"] as? NSNumber
         
         reviewCount = dictionary["review_count"] as? NSNumber
     }

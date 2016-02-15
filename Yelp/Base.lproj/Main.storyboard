@@ -127,7 +127,12 @@
                     <navigationItem key="navigationItem" title="Yelp" id="oyU-lw-1c2">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="uJy-V8-gKL">
                             <connections>
-                                <segue destination="037-hT-j3O" kind="presentation" id="0z9-tx-sLY"/>
+                                <segue destination="037-hT-j3O" kind="presentation" identifier="filtersSegue" id="0z9-tx-sLY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="0S8-Dq-4ti">
+                            <connections>
+                                <segue destination="lNF-Sd-y8F" kind="presentation" identifier="mapSegue" id="e5l-p6-TyK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -138,6 +143,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2472" y="358"/>
+        </scene>
+        <!--Map view-->
+        <scene sceneID="tWF-7Z-ScA">
+            <objects>
+                <viewController id="DEC-WQ-KlH" customClass="BusinessesMapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wRd-fy-NZi"/>
+                        <viewControllerLayoutGuide type="bottom" id="RxW-JY-Z4D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zXv-gI-NR7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2si-sd-zMk">
+                                <rect key="frame" x="8" y="28" width="584" height="564"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2si-sd-zMk" secondAttribute="trailing" constant="8" id="Dm1-bt-dZg"/>
+                            <constraint firstItem="2si-sd-zMk" firstAttribute="leading" secondItem="zXv-gI-NR7" secondAttribute="leading" constant="8" id="ExF-1A-jrC"/>
+                            <constraint firstItem="2si-sd-zMk" firstAttribute="top" secondItem="wRd-fy-NZi" secondAttribute="bottom" constant="8" id="NYN-qK-h3M"/>
+                            <constraint firstItem="RxW-JY-Z4D" firstAttribute="top" secondItem="2si-sd-zMk" secondAttribute="bottom" constant="8" id="SHo-IR-nMi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map view" id="gEz-xk-1Th">
+                        <barButtonItem key="rightBarButtonItem" title="List" id="2kF-oH-wo2">
+                            <connections>
+                                <segue destination="WY1-bO-CSz" kind="unwind" unwindAction="unwindToBusinessListViaCancel:" id="diH-Jb-iZ1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="2si-sd-zMk" id="PDw-U1-XOr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aec-HX-y7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WY1-bO-CSz" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3844" y="358"/>
         </scene>
         <!--Filters-->
         <scene sceneID="Xu2-PY-hMW">
@@ -448,6 +493,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKj-Gg-zfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1788" y="1027"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Vej-Hu-wGT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lNF-Sd-y8F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l2E-rY-9Jl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DEC-WQ-KlH" kind="relationship" relationship="rootViewController" id="YWY-x3-6eR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HS5-MH-Oyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3163" y="358"/>
         </scene>
     </scenes>
 </document>

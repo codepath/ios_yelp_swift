@@ -2,7 +2,7 @@
 
 **YelpLayout** is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: **10** hours spent in total
+Time spent: **12** hours spent in total
 
 ## User Stories
 
@@ -21,9 +21,9 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Search results page
+- [x] Search results page
    - [x] Infinite scroll for restaurant results.
-   - [ ] Implement map view of restaurant results.
+   - [x] Implement map view of restaurant results.
 - [ ] Filter page
    - [ ] Implement a custom switch instead of the default UISwitch.
    - [ ] Distance filter should expand as in the real Yelp app
@@ -50,22 +50,27 @@ This is a personal todo list as I step through the assignment.
 - [x] Add API support for distance (`radius_filter`)
 - [x] configure Distance cell selection in FiltersTableViewController
 ---
-- [x] Search bar enhancements
-  - [x] Hint text in empty search field
-  - [x] Allow empty search (search button disabled on keyboard)
-  - [x] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
-- [x] Refactor to include `Business.searchWithFilterSettings()`
 - [x] Infinite scroll for restaurant results
   - [x] implement `UIScrollViewDelegate` and loadingAdditonal state
   - [x] API call for additional results
   - [x] Display and dismiss activity indicator
   - [x] Add MBProgressHUD pod
+- [x] Map view of restaurant results
+  - [x] add MapKit framework
+  - [x] add MapViewController, MKMapView, UINavigationController, and segues
+  - [x] update `Business` object to get lat / lng from API response
+---
+- [x] Search bar enhancements
+  - [x] Hint text in empty search field
+  - [x] Allow empty search (search button disabled on keyboard)
+  - [x] Keyboard suggestions (`searchBar.autocorrectionType = .Default`)
+- [x] Refactor to include `Business.searchWithFilterSettings()`
+- [x] Occasional crash on business with null imageURL
 - [ ] Search results page
   - [ ] no results view (set `tableView.backgroundView` and `hidden`?)
   - [ ] scroll table back to top after search
 - [ ] HUD for any asynchronous network calls
 - [ ] Review Assignment #1 feedback
-- [ ] Occasional crash on business with null imageURL
 
 ***
 

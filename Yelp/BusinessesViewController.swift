@@ -60,9 +60,18 @@ class BusinessesViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let navController = segue.destinationViewController as! UINavigationController
-        let filtersController = navController.topViewController as! FiltersTableViewController
-        filtersController.filterSettings = self.searchFilterSettings
+        
+        if segue.identifier == "filtersSegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let filtersController = navController.topViewController as! FiltersTableViewController
+            filtersController.filterSettings = self.searchFilterSettings
+        }
+        
+        if segue.identifier == "mapSegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let mapController = navController.topViewController as! BusinessesMapViewController
+            mapController.businesses = businesses
+        }
     }
     
     @IBAction func unwindToBusinessListViaCancel(sender: UIStoryboardSegue) {
