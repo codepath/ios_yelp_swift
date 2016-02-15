@@ -11,6 +11,8 @@ import UIKit
 class Business: NSObject {
     let name: String?
     let address: String?
+    let latitude: NSNumber?
+    let longitude: NSNumber?
     let imageURL: NSURL?
     let categories: String?
     let distance: String?
@@ -72,6 +74,9 @@ class Business: NSObject {
             ratingImageURL = nil
         }
         
+        latitude = location?["coordinate"]?["latitude"] as? NSNumber
+        longitude = location?["coordinate"]?["longitude"] as? NSNumber
+        
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
@@ -83,12 +88,12 @@ class Business: NSObject {
         }
         return businesses
     }
-    
-    class func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) {
-        YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
+
+    class func searchWithTerm(term: String, settings: BusinessSearchFilterSettings, completion: ([Business]!, NSError!) -> Void) {
+        YelpClient.sharedInstance.searchWithTerm(term, searchFilters: settings, completion: completion)
     }
     
-    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
-        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
+    class func searchWithTerm(term: String, settings: BusinessSearchFilterSettings, limit: Int?, offset: Int?, completion: ([Business]!, NSError!) -> Void) {
+        YelpClient.sharedInstance.searchWithTerm(term, searchFilters: settings, limit: limit, offset: offset, completion: completion)
     }
 }
