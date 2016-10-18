@@ -18,24 +18,19 @@ let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
 let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
 
 enum YelpSortMode: Int {
-    case BestMatched = 0, Distance, HighestRated
+    case bestMatched = 0, distance, highestRated
 }
 
 class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
     
-    class var sharedInstance : YelpClient {
-        struct Static {
-            static var token : dispatch_once_t = 0
-            static var instance : YelpClient? = nil
-        }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        }
-        return Static.instance!
-    }
+    //MARK: Shared Instance
+    
+    static let sharedInstance : YelpClient = {
+        let instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+        return instance
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,44 +39,53 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
         self.accessToken = accessToken
         self.accessSecret = accessSecret
-        let baseUrl = NSURL(string: "https://api.yelp.com/v2/")
+        let baseUrl = URL(string: "https://api.yelp.com/v2/")
         super.init(baseURL: baseUrl, consumerKey: key, consumerSecret: secret);
         
         let token = BDBOAuth1Credential(token: accessToken, secret: accessSecret, expiration: nil)
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(_ term: String, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
         return searchWithTerm(term, sort: nil, categories: nil, deals: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(_ term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: @escaping ([Business]?, Error?) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
-
+        
         // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
-
+        var parameters: [String : AnyObject] = ["term": term as AnyObject, "ll": "37.785771,-122.406165" as AnyObject]
+        
         if sort != nil {
-            parameters["sort"] = sort!.rawValue
+            parameters["sort"] = sort!.rawValue as AnyObject?
         }
         
         if categories != nil && categories!.count > 0 {
-            parameters["category_filter"] = (categories!).joinWithSeparator(",")
+            parameters["category_filter"] = (categories!).joined(separator: ",") as AnyObject?
         }
         
         if deals != nil {
-            parameters["deals_filter"] = deals!
+            parameters["deals_filter"] = deals! as AnyObject?
         }
         
         print(parameters)
         
-        return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            let dictionaries = response["businesses"] as? [NSDictionary]
-            if dictionaries != nil {
-                completion(Business.businesses(array: dictionaries!), nil)
-            }
-            }, failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
-                completion(nil, error)
+        //self.get(<#T##URLString: String##String#>, parameters: <#T##Any?#>, success: <#T##((AFHTTPRequestOperation, Any) -> Void)?##((AFHTTPRequestOperation, Any) -> Void)?##(AFHTTPRequestOperation, Any) -> Void#>, failure: <#T##((AFHTTPRequestOperation?, Error) -> Void)?##((AFHTTPRequestOperation?, Error) -> Void)?##(AFHTTPRequestOperation?, Error) -> Void#>)
+        
+        return self.get("search", parameters: parameters,
+                        
+                        success: { (operation: AFHTTPRequestOperation, response: Any) -> Void in
+                            
+                            if let response = response as? [String: Any]{
+                                let dictionaries = response["businesses"] as? [NSDictionary]
+                                if dictionaries != nil {
+                                    completion(Business.businesses(array: dictionaries!), nil)
+                                }
+                            }
+                            
+            },
+                        failure: { (operation: AFHTTPRequestOperation?, error: Error) -> Void in
+                            completion(nil, error)
         })!
     }
 }
