@@ -73,19 +73,16 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         //self.get(<#T##URLString: String##String#>, parameters: <#T##Any?#>, success: <#T##((AFHTTPRequestOperation, Any) -> Void)?##((AFHTTPRequestOperation, Any) -> Void)?##(AFHTTPRequestOperation, Any) -> Void#>, failure: <#T##((AFHTTPRequestOperation?, Error) -> Void)?##((AFHTTPRequestOperation?, Error) -> Void)?##(AFHTTPRequestOperation?, Error) -> Void#>)
         
         return self.get("search", parameters: parameters,
-                        
                         success: { (operation: AFHTTPRequestOperation, response: Any) -> Void in
-                            
                             if let response = response as? [String: Any]{
                                 let dictionaries = response["businesses"] as? [NSDictionary]
                                 if dictionaries != nil {
                                     completion(Business.businesses(array: dictionaries!), nil)
                                 }
                             }
-                            
-            },
+                        },
                         failure: { (operation: AFHTTPRequestOperation?, error: Error) -> Void in
                             completion(nil, error)
-        })!
+                        })!
     }
 }
