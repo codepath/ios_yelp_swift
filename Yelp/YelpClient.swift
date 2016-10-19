@@ -27,10 +27,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     
     //MARK: Shared Instance
     
-    static let sharedInstance : YelpClient = {
-        let instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        return instance
-    }()
+    static let sharedInstance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -69,8 +66,6 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         }
         
         print(parameters)
-        
-        //self.get(<#T##URLString: String##String#>, parameters: <#T##Any?#>, success: <#T##((AFHTTPRequestOperation, Any) -> Void)?##((AFHTTPRequestOperation, Any) -> Void)?##(AFHTTPRequestOperation, Any) -> Void#>, failure: <#T##((AFHTTPRequestOperation?, Error) -> Void)?##((AFHTTPRequestOperation?, Error) -> Void)?##(AFHTTPRequestOperation?, Error) -> Void#>)
         
         return self.get("search", parameters: parameters,
                         success: { (operation: AFHTTPRequestOperation, response: Any) -> Void in
