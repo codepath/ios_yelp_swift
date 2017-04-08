@@ -23,6 +23,12 @@ class BusinessesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        
+        navigationItem.titleView = searchBar
+        navigationItem.titleView?.backgroundColor = UIColor(colorLiteralRed: 232/255, green: 30/255, blue: 0/255, alpha: 1)
+        
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.businesses = businesses

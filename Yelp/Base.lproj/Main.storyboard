@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Yelp-->
+        <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
                 <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,7 +127,11 @@
                             <constraint firstItem="zjm-TH-eKp" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="qwS-7B-Fl3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="2aD-Av-vFH"/>
+                    <navigationItem key="navigationItem" id="2aD-Av-vFH">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="MJw-Qw-Mse">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="zjm-TH-eKp" id="LiM-dP-dJ4"/>
                     </connections>
@@ -141,9 +145,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLC-it-fEa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3w2-ij-zR3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3w2-ij-zR3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.90997409330000001" green="0.1169603718" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.90997409330000001" green="0.1169603718" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" red="0.90997409330000001" green="0.1169603718" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
