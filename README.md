@@ -11,7 +11,7 @@ This is a headless example of how to implement an OAuth 1.0a Yelp API client. Th
 **Basic search with query**
 
 ```
-Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: Error!) -> Void in
     self.businesses = businesses
     
     for business in businesses {
@@ -24,7 +24,7 @@ Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: N
 **Advanced search with categories, sort, and deal filters**
 
 ```
-Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+Business.searchWithTerm("Restaurants", sort: .distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: Error!) -> Void in
 
     for business in businesses {
         print(business.name!)
