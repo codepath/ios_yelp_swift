@@ -17,25 +17,24 @@ class BusinessesViewController: UIViewController {
         
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
-            self.businesses = businesses
-            if let businesses = businesses {
-                for business in businesses {
-                    print(business.name!)
-                    print(business.address!)
+                self.businesses = businesses
+                if let businesses = businesses {
+                    for business in businesses {
+                        print(business.name!)
+                        print(business.address!)
+                    }
                 }
-            }
             
             }
         )
         
         /* Example of Yelp search with more search options specified
-         Business.searchWithTerm("Restaurants", sort: .distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: Error!) -> Void in
-         self.businesses = businesses
-         
-         for business in businesses {
-         print(business.name!)
-         print(business.address!)
-         }
+         Business.searchWithTerm(term: "Restaurants", sort: .distance, categories: ["asianfusion", "burgers"]) { (businesses, error) in
+                self.businesses = businesses
+                 for business in self.businesses {
+                     print(business.name!)
+                     print(business.address!)
+                 }
          }
          */
         
