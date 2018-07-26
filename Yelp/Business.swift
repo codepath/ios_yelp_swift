@@ -14,7 +14,7 @@ class Business: NSObject {
     let imageURL: URL?
     let categories: String?
     let distance: String?
-    let ratingImageURL: URL?
+    let ratingImage: UIImage?
     let reviewCount: NSNumber?
     
     init(dictionary: NSDictionary) {
@@ -30,26 +30,23 @@ class Business: NSObject {
         let location = dictionary["location"] as? NSDictionary
         var address = ""
         if location != nil {
-            let addressArray = location!["address"] as? NSArray
-            if addressArray != nil && addressArray!.count > 0 {
-                address = addressArray![0] as! String
-            }
-            
-            let neighborhoods = location!["neighborhoods"] as? NSArray
-            if neighborhoods != nil && neighborhoods!.count > 0 {
-                if !address.isEmpty {
-                    address += ", "
+            let addressArray = location!["display_address"] as? NSArray
+            if addressArray != nil {
+                if addressArray!.count > 0 {
+                    address = addressArray![0] as! String
                 }
-                address += neighborhoods![0] as! String
+                if addressArray!.count > 1 {
+                    address += ", " + (addressArray![1] as! String)
+                }
             }
         }
         self.address = address
         
-        let categoriesArray = dictionary["categories"] as? [[String]]
+        let categoriesArray = dictionary["categories"] as? [NSDictionary]
         if categoriesArray != nil {
             var categoryNames = [String]()
             for category in categoriesArray! {
-                let categoryName = category[0]
+                let categoryName = category["title"] as! String
                 categoryNames.append(categoryName)
             }
             categories = categoryNames.joined(separator: ", ")
@@ -65,11 +62,42 @@ class Business: NSObject {
             distance = nil
         }
         
-        let ratingImageURLString = dictionary["rating_img_url_large"] as? String
-        if ratingImageURLString != nil {
-            ratingImageURL = URL(string: ratingImageURLString!)
+        let rating = dictionary["rating"] as? Double
+        if rating != nil {
+            switch rating {
+                case 1:
+                    self.ratingImage = UIImage(named: "stars_1")
+                    break
+                case 1.5:
+                    self.ratingImage = UIImage(named: "stars_1half")
+                    break
+                case 2:
+                    self.ratingImage = UIImage(named: "stars_2")
+                    break
+                case 2.5:
+                    self.ratingImage = UIImage(named: "stars_2half")
+                    break
+                case 3:
+                    self.ratingImage = UIImage(named: "stars_3")
+                    break
+                case 3.5:
+                    self.ratingImage = UIImage(named: "stars_3half")
+                    break
+                case 4:
+                    self.ratingImage = UIImage(named: "stars_4")
+                    break
+                case 4.5:
+                    self.ratingImage = UIImage(named: "stars_4half")
+                    break
+                case 5:
+                    self.ratingImage = UIImage(named: "stars_5")
+                    break
+                default:
+                    self.ratingImage = UIImage(named: "stars_0")
+                    break
+            }
         } else {
-            ratingImageURL = nil
+            self.ratingImage = UIImage(named: "stars_0")
         }
         
         reviewCount = dictionary["review_count"] as? NSNumber
